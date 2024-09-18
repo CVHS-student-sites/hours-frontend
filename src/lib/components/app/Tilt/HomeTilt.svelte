@@ -4,26 +4,26 @@
 
 <style>
     .main {
-        width: 300px;
-        height: 300px;
+        width: 350px;
+        height: 350px;
         display: flex;
         align-items: center;
         justify-content: center;
         transform-style: preserve-3d;
         transform: perspective(1000px);
-        background-image: url('/assets/locker.svg');
+        background-image: url('/assets/heart.svg');
         background-size: contain;
     }
 
     .inner {
-        width: 200px;
-        height: 200px;
-        transform: translateZ(50px);
+        width: 140px;
+        height: 140px;
+        transform: translateZ(50px) translateY(-20px);
     }
 
     .logo {
-        width: 200px;
-        height: 200px;
+        width: 140px;
+        height: 140px;
         pointer-events: none;
         user-select: none;
     }
