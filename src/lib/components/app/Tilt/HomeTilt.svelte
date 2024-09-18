@@ -54,6 +54,5 @@
     <div class="inner">
         <img class="logo" alt="cvhs falcon logo" src="/assets/CVHS-logo.png">
     </div>
-
 </div>
 
