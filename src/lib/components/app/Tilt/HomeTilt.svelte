@@ -11,21 +11,22 @@
         justify-content: center;
         transform-style: preserve-3d;
         transform: perspective(1000px);
-        background-image: url('/assets/heart.svg');
+        background-image: url('/assets/clock.svg');
         background-size: contain;
     }
 
     .inner {
-        width: 140px;
-        height: 140px;
-        transform: translateZ(50px) translateY(-20px);
+        width: 170px;
+        height: 170px;
+        transform: translateZ(50px) ;
     }
 
     .logo {
-        width: 140px;
-        height: 140px;
+        width: 170px;
+        height: 170px;
         pointer-events: none;
         user-select: none;
+        opacity: 0.7;
     }
 
     @media screen and (max-width: 600px) {

@@ -1,5 +1,6 @@
 <script>
     import TopNav from "$lib/components/TopNav/TopNav.svelte";
+    import TopNavigation from "$lib/components/composites/TopNavigation.svelte";
     // import Botnav from "$lib/components/Botnav.svelte";
 </script>
 
@@ -8,6 +9,7 @@
     .layout-main {
         font-family: "Montserrat", sans-serif;
         background-color: var(--background);
+        color: var(--text);
         display: flex;
         flex-direction: column;
         height: 100%;
@@ -16,9 +18,8 @@
     }
 </style>
 
-
 <div class="layout-main">
-    <TopNav/>
+    <TopNavigation/>
     <slot/>
     <!--    <Botnav/>-->
 </div>
