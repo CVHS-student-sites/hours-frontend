@@ -242,7 +242,7 @@
         <a href="/"
         ><img alt="IMS logo" class="logo" src="/assets/CVHS-logo.png"/></a
         >
-        <div class="top-text">CVHS Volunteering</div>
+        <div class="top-text">CVHS Community Service</div>
     </div>
 
     <div class="login">

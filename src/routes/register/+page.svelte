@@ -231,14 +231,42 @@
         <a href="/"
         ><img alt="IMS logo" class="logo" src="/assets/CVHS-logo.png"/></a
         >
-        <div class="top-text">CVHS Volunteering</div>
+        <div class="top-text">CVHS Community Service</div>
     </div>
 
     <div class="login">
         <div class="login-cont">
-            <div class="login-header">Register</div>
+            <div class="login-header">Student Registration</div>
 
             <div class="login-form" on:keydown={handleKeyPress}>
+
+                <label for="username">First Name</label>
+                <input
+                        bind:value={username}
+                        id="username"
+                        name="username"
+                        required
+                        type="text"
+                />
+
+                <label for="username">Last Name</label>
+                <input
+                        bind:value={username}
+                        id="username"
+                        name="username"
+                        required
+                        type="text"
+                />
+
+                <label for="username">6 Digit ID</label>
+                <input
+                        bind:value={username}
+                        id="username"
+                        name="username"
+                        required
+                        type="text"
+                />
+
                 <label for="username">Email</label>
                 <input
                         bind:value={username}

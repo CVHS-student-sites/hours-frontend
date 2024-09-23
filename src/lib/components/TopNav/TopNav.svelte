@@ -103,7 +103,7 @@
 <div class="top">
     <div class="logo-cont">
         <a href="/"><img alt="cv logo" class="logo" loading="eager" rel="preload" src="/assets/CVHS-logo.png"/></a>
-        <div class="top-text">CVHS Volunteer Hours</div>
+        <div class="top-text">CVHS Community Service (but better)</div>
     </div>
 
     <div class="icon-cont">

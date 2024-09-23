@@ -81,7 +81,7 @@
         justify-content: center;
         display: flex;
 
-        width: 400px;
+        width: 550px;
         border: 2px solid #577db2;
         border-radius: 100px;
         padding: 8px;
@@ -94,7 +94,7 @@
     }
 
     p {
-        width: 350px;
+        width: 500px;
         font-size: 16px;
         font-family: 'Montserrat', sans-serif;
         color: #d6d6d6;
@@ -149,26 +149,24 @@
 
 
                 <div class="landing">
-                    <h1 in:blur={{ delay: 50, duration: 300 }}>Welcome To CV Volunteering</h1>
-                    <h3 in:blur={{ delay: 300, duration: 500 }}>Some info to get you started</h3>
+                    <h1 in:blur={{ delay: 50, duration: 300 }}>Welcome To CV Community Service</h1>
+                    <h3 in:blur={{ delay: 300, duration: 500 }}>Some useful info to get you started</h3>
 
                     <div class="info-cont">
                         <div class="list-cont" in:slide={{ delay: 700, duration: 350, axis: 'y' }}>
-                            <p>To register for a locker at CV, you need a locker partner, except for single lockers on
-                                the 3rd floor of the 1000 building.</p>
+                            <p><b>Volunteering isn’t optional</b>—unless you enjoy the sweet, sweet smell of zero recognition.</p>
                         </div>
 
                         <div class="list-cont" in:slide={{ delay: 850, duration: 350, axis: 'y' }}>
-                            <p>This process will require students to verify their emails upon registration.</p>
+                            <p><b>Non-profits don’t pay you.</b> If they do, congrats, you’re probably working at a real job. Try again.</p>
                         </div>
 
                         <div class="list-cont" in:slide={{ delay: 1000, duration: 350, axis: 'y' }}>
-                            <p>You and your partner are responsible for all items in the locker. CV is not liable for
-                                lost or stolen items.</p>
+                            <p><b>Enter your hours</b>—because if it’s not on the site, did you even volunteer, or are you just a professional nap-taker?</p>
                         </div>
 
                         <div class="list-cont" in:slide={{ delay: 1150, duration: 350, axis: 'y' }}>
-                            <p>Locks are available for purchase at the Student Store.</p>
+                            <p><b>Be on your best behavior.</b> If you embarrass the school, we’ll just claim we’ve never heard of you.</p>
                         </div>
                     </div>
                 </div>
