@@ -1,3 +1,7 @@
+<script>
+    import Boop from "$lib/components/composites/Boop.svelte";
+</script>
+
 <style>
     .logo-cont a {
         display: inherit;
@@ -139,7 +143,9 @@
     <div class="nav-padding">
         <div class="top-navigation">
             <div class="logo-cont">
-                <a href="/"><img alt="cv logo" class="logo" loading="eager" rel="preload" src="/assets/CVHS-logo.png"/></a>
+                <Boop rotation={10} timing={200}>
+                    <a href="/"><img alt="cv logo" class="logo" loading="eager" rel="preload" src="/assets/CVHS-logo.png"/></a>
+                </Boop>
                 <div class="top-text">CVHS Community Service</div>
             </div>
 

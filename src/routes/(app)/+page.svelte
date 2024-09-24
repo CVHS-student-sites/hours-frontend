@@ -113,7 +113,9 @@
     }
 
     .animation-cont {
-        height: 56.8px;
+        height: 57px;
+        display: flex;
+        align-items: center;
     }
 
     .special-text {
