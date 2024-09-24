@@ -82,7 +82,7 @@
         display: flex;
 
         width: 550px;
-        border: 2px solid #577db2;
+        border: 2px solid #0069cc;
         border-radius: 100px;
         padding: 8px;
         box-sizing: content-box;
@@ -97,7 +97,7 @@
         width: 500px;
         font-size: 16px;
         font-family: 'Montserrat', sans-serif;
-        color: #d6d6d6;
+        color: var(--text);
         text-align: center;
         margin: 0;
     }
@@ -110,6 +110,20 @@
         margin-bottom: 6px;
         color: #acacb0;
         /*align-self: flex-start;*/
+    }
+
+    .animation-cont {
+        height: 56.8px;
+    }
+
+    .special-text {
+        background-image: linear-gradient(45deg, var(--primary), var(--accent) 25%, var(--primary) 50%, var(--accent) 75%, var(--primary));
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        font-weight: bold;
+        opacity: 1;
+
     }
 
     @media screen and (max-width: 600px) {
@@ -149,24 +163,35 @@
 
 
                 <div class="landing">
-                    <h1 in:blur={{ delay: 50, duration: 300 }}>Welcome To CV Community Service</h1>
+                    <h1 class="special-text" in:blur={{ delay: 50, duration: 300 }}>Welcome To CV Community Service</h1>
                     <h3 in:blur={{ delay: 300, duration: 500 }}>Some useful info to get you started</h3>
 
                     <div class="info-cont">
-                        <div class="list-cont" in:slide={{ delay: 700, duration: 350, axis: 'y' }}>
-                            <p><b>Volunteering isn’t optional</b>—unless you enjoy the sweet, sweet smell of zero recognition.</p>
+                        <div class="animation-cont">
+                            <div class="list-cont" in:slide={{ delay: 700, duration: 350, axis: 'y' }}>
+                                <p><b>Volunteering isn’t optional</b>—unless you enjoy the sweet, sweet smell of zero
+                                    recognition.</p>
+                            </div>
                         </div>
 
-                        <div class="list-cont" in:slide={{ delay: 850, duration: 350, axis: 'y' }}>
-                            <p><b>Non-profits don’t pay you.</b> If they do, congrats, you’re probably working at a real job. Try again.</p>
+                        <div class="animation-cont">
+                            <div class="list-cont" in:slide={{ delay: 850, duration: 350, axis: 'y' }}>
+                                <p><b>Non-profits don’t pay you.</b> If they do, congrats, you’re probably working at a
+                                    real job. Try again.</p>
+                            </div>
                         </div>
 
-                        <div class="list-cont" in:slide={{ delay: 1000, duration: 350, axis: 'y' }}>
-                            <p><b>Enter your hours</b>—because if it’s not on the site, did you even volunteer, or are you just a professional nap-taker?</p>
+                        <div class="animation-cont">
+                            <div class="list-cont" in:slide={{ delay: 1000, duration: 350, axis: 'y' }}>
+                                <p><b>Enter your hours</b>—because if it’s not on the site, did you even volunteer, or
+                                    are you just a professional nap-taker?</p>
+                            </div>
                         </div>
-
-                        <div class="list-cont" in:slide={{ delay: 1150, duration: 350, axis: 'y' }}>
-                            <p><b>Be on your best behavior.</b> If you embarrass the school, we’ll just claim we’ve never heard of you.</p>
+                        <div class="animation-cont">
+                            <div class="list-cont" in:slide={{ delay: 1150, duration: 350, axis: 'y' }}>
+                                <p><b>Be on your best behavior.</b> If you embarrass the school, we’ll just claim we’ve
+                                    never heard of you.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -174,7 +199,7 @@
             </div>
 
             <div class="sub1" in:blur={{ delay: 250, duration: 300 }}>
-                                <HomeTilt/>
+                <HomeTilt/>
             </div>
         {/if}
     </div>

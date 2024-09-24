@@ -58,7 +58,6 @@
     }
 
     .logo-cont {
-        margin-left: 20px;
         display: flex;
         flex-direction: row;
         align-items: center;
