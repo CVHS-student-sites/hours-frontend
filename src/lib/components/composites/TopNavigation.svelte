@@ -150,21 +150,15 @@
             </div>
 
             <div class="navigation-links">
-                <a href="/" class="nav-link">
-                    Home
-                </a>
+                <a href="/" class="nav-link">Home</a>
 
-                <a href="/help" class="nav-link">
-                    Help
-                </a>
+                <a href="/orgs" class="nav-link">Info</a>
 
-                <a href="/register" class="nav-link">
-                    Register
-                </a>
+                <a href="/help" class="nav-link">Help</a>
 
-                <a href="/login" class="nav-link special-link">
-                    Sign In
-                </a>
+                <a href="/register" class="nav-link">Register</a>
+
+                <a href="/login" class="nav-link special-link">Sign In</a>
             </div>
         </div>
     </div>
