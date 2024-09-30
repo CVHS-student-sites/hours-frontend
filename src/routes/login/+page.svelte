@@ -92,7 +92,7 @@
         flex-direction: column;
         border-radius: 8px;
         padding: 32px;
-        background-color: #1b2c42;
+        /*background-color: #1b2c42;*/
     }
 
     .login-header {
@@ -134,7 +134,7 @@
         color: var(--text);
         border: 2px solid #005cb3;
         /* border: none; */
-        background-color: #17171c;
+        background-color: var(--background);
 
         border-radius: 4px;
         transition-duration: 50ms;
@@ -226,6 +226,10 @@
             background: unset;
         }
 
+        .top-text{
+            font-size: 15px;
+        }
+
         .login-form {
             width: 90vw;
         }
@@ -247,10 +251,10 @@
 
     <div class="login">
         <div class="login-cont">
-            <div class="login-header">Login</div>
+            <div class="login-header">Student Login</div>
 
             <div class="login-form" on:keydown={handleKeyPress}>
-                <label for="username">Email</label>
+                <label for="username">Stduent ID</label>
                 <input
                         bind:value={username}
                         id="username"

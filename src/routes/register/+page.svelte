@@ -91,7 +91,7 @@
         flex-direction: column;
         border-radius: 8px;
         padding: 32px;
-        background-color: #1b2c42;
+        /*background-color: #1b2c42;*/
     }
 
     .login-header {
@@ -133,7 +133,7 @@
         color: var(--text);
         border: 2px solid #005cb3;
         /* border: none; */
-        background-color: #17171c;
+        background-color: var(--background);
 
         border-radius: 4px;
         transition-duration: 50ms;
@@ -219,6 +219,10 @@
             width: 90vw;
         }
 
+        .top-text{
+            font-size: 15px;
+        }
+
         input[type="text"],
         input[type="password"] {
             width: 100%;
@@ -259,6 +263,15 @@
                 />
 
                 <label for="username">6 Digit ID</label>
+                <input
+                        bind:value={username}
+                        id="username"
+                        name="username"
+                        required
+                        type="text"
+                />
+
+                <label for="username">Grade</label>
                 <input
                         bind:value={username}
                         id="username"
