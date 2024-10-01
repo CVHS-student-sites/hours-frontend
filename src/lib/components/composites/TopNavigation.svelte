@@ -1,5 +1,23 @@
 <script>
-    import Boop from "$lib/components/composites/Boop.svelte";
+    import Boop from "$lib/components/app/Boop.svelte";
+    import ProfileIcon from "$lib/components/app/ProfileIcon.svelte";
+
+    import {checkLoginStatus} from "$lib/api/global.js";
+    import {onMount} from "svelte";
+
+    let isSignedIn = false;
+
+    //todo this should be forced server side logic
+    onMount(async () => {
+        let data = await checkLoginStatus()
+        // isSignedIn = data.signedIn;
+
+        if (data.signedIn) {
+            isSignedIn = true;
+        } else {
+            isSignedIn = true;
+        }
+    });
 </script>
 
 <style>
@@ -99,14 +117,12 @@
     }
 
     .nav-link {
-
         color: var(--text);
         font-size: 16px;
         border-radius: .5rem;
         align-self: center;
         padding: 16px;
         transition: all .2s;
-
     }
 
     .special-link {
@@ -114,6 +130,13 @@
         margin-left: 16px;
         background-image: linear-gradient(225deg, #0084ff, #743fde);
 
+    }
+
+    .profile-icon-cont {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 16px;
     }
 
     .nav-link:hover {
@@ -144,7 +167,8 @@
         <div class="top-navigation">
             <div class="logo-cont">
                 <Boop rotation={10} timing={200}>
-                    <a href="/"><img alt="cv logo" class="logo" loading="eager" rel="preload" src="/assets/CVHS-logo.png"/></a>
+                    <a href="/"><img alt="cv logo" class="logo" loading="eager" rel="preload"
+                                     src="/assets/CVHS-logo.png"/></a>
                 </Boop>
                 <div class="top-text">CVHS Community Service</div>
             </div>
@@ -158,7 +182,13 @@
 
                 <a href="/register" class="nav-link">Register</a>
 
-                <a href="/login" class="nav-link special-link">Sign In</a>
+                {#if isSignedIn}
+                    <div class="profile-icon-cont">
+                        <ProfileIcon firstName="Marc" lastName="Hyeler" iconSize="48" fontSize="16"/>
+                    </div>
+                {:else}
+                    <a href="/login" class="nav-link special-link">Sign In</a>
+                {/if}
             </div>
         </div>
     </div>

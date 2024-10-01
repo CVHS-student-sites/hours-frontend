@@ -2,17 +2,8 @@
     import {draw, fade} from 'svelte/transition';
     import {quintOut} from 'svelte/easing';
     import {onMount} from 'svelte';
-    import { goto } from '$app/navigation';
 
     let condition = false;
-
-    let count = 0;
-    function incrementCount() {
-        count++
-        if(count === 5){
-            window.location = "https://shattereddisk.github.io/rickroll/rickroll.mp4"
-        }
-    }
 
     onMount(() => {
         condition = true;
@@ -33,7 +24,7 @@
         justify-content: center;
     }
 
-    .cred-text{
+    .cred-text {
         font-family: "Montserrat", sans-serif;
         color: var(--text);
         font-size: 16px;
@@ -41,7 +32,7 @@
 </style>
 
 <div class="svg-cont">
-    <svg class="logo" viewBox="0 0 1175 825" xmlns="http://www.w3.org/2000/svg" on:click={incrementCount}>
+    <svg class="logo" viewBox="0 0 1175 825" xmlns="http://www.w3.org/2000/svg">
         {#if condition}
             <g id="_0" serif:id="0" transform="matrix(1,0,0,1,214.015,494.108)">
                 <g transform="matrix(1,0,0,1,-214.015,-494.108)">

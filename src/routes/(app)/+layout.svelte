@@ -1,5 +1,4 @@
 <script>
-    import TopNav from "$lib/components/TopNav/TopNav.svelte";
     import TopNavigation from "$lib/components/composites/TopNavigation.svelte";
     // import Botnav from "$lib/components/Botnav.svelte";
 </script>
