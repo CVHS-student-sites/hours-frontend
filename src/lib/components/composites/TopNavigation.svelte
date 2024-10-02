@@ -4,6 +4,7 @@
 
     import {checkLoginStatus} from "$lib/api/global.js";
     import {onMount} from "svelte";
+    import {blur} from 'svelte/transition';
 
     let isSignedIn = false;
     let response;
@@ -201,7 +202,7 @@
 
                 {#if isSignedIn}
                     <div class="profile-icon-cont">
-                        <a href="/dashboard" class="profile-link">
+                        <a href="/dashboard" class="profile-link" in:blur={{delay: 150, duration: 300}}>
                             <ProfileIcon firstName={response.data.user.firstName} lastName={response.data.user.lastName}
                                          iconSize="48" fontSize="16"/>
                         </a>
