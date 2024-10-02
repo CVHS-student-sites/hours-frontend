@@ -1,10 +1,12 @@
 <script>
     // views
     import StudentDashboard from "./views/StudentDashboard.svelte";
+    import SupervisorDashboard from "./views/SupervisorDashboard.svelte";
 
     import {Moon} from "svelte-loading-spinners";
     import {checkLoginStatus} from "$lib/api/global.js";
     import {onMount} from "svelte";
+    import {goto} from "$app/navigation";
 
     let currentView;
     let loading = true;
@@ -14,12 +16,18 @@
     onMount(async () => {
         console.log();
         let loginCheckResponse = await checkLoginStatus();
-        role = loginCheckResponse.data.user.role;
-        console.log(role);
+        if (!loginCheckResponse.data.signedIn) {
+            await goto('/login');
+        } else {
+            role = loginCheckResponse.data.user.role;
+            console.log(role);
 
-        if (role === "student") currentView = StudentDashboard;
+            if (role === "student") currentView = StudentDashboard;
+            if (role === "supervisor") currentView = SupervisorDashboard;
+            if (role === "admin") await goto('/admin');
 
-        loading = false;
+            loading = false;
+        }
     });
 </script>
 

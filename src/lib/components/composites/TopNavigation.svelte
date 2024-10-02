@@ -6,10 +6,11 @@
     import {onMount} from "svelte";
 
     let isSignedIn = false;
+    let response;
 
     //todo this should be forced server side logic
     onMount(async () => {
-        let response = await checkLoginStatus()
+        response = await checkLoginStatus()
         isSignedIn = response.data.signedIn;
     });
 </script>
@@ -133,7 +134,12 @@
         font-weight: bold;
         margin-left: 16px;
         background-image: linear-gradient(225deg, #0084ff, #743fde);
+        transition: all .2s;
+    }
 
+    .special-link:hover {
+        transform: scale(1.06);
+        transform-origin: center;
     }
 
     .profile-icon-cont {
@@ -189,7 +195,8 @@
                 {#if isSignedIn}
                     <div class="profile-icon-cont">
                         <a href="/dashboard" class="profile-link">
-                            <ProfileIcon firstName="Marc" lastName="Hyeler" iconSize="48" fontSize="16"/>
+                            <ProfileIcon firstName={response.data.user.firstName} lastName={response.data.user.lastName}
+                                         iconSize="48" fontSize="16"/>
                         </a>
                     </div>
                 {:else}

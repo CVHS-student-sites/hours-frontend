@@ -1,6 +1,6 @@
 <script>
-    export let firstName = "Marc";
-    export let lastName = "Hyeler";
+    export let firstName = "";
+    export let lastName = "";
     export let iconSize = 48;
     export let fontSize = 16;
 

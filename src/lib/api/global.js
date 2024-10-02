@@ -13,3 +13,7 @@ export async function checkLoginStatus() {
 export function loginStudent(data) {
     return axiosInstance.post('/auth/student/login', data)
 }
+
+export function loginPrivileged(data) {
+    return axiosInstance.post('/auth/privileged/login', data)
+}
