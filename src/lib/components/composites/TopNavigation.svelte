@@ -9,14 +9,8 @@
 
     //todo this should be forced server side logic
     onMount(async () => {
-        let data = await checkLoginStatus()
-        // isSignedIn = data.signedIn;
-
-        if (data.signedIn) {
-            isSignedIn = true;
-        } else {
-            isSignedIn = true;
-        }
+        let response = await checkLoginStatus()
+        isSignedIn = response.data.signedIn;
     });
 </script>
 
@@ -125,6 +119,16 @@
         transition: all .2s;
     }
 
+    .profile-link {
+        transition: all .2s;
+    }
+
+    .profile-link:hover {
+        transform: scale(1.06);
+        transform-origin: center;
+    }
+
+
     .special-link {
         font-weight: bold;
         margin-left: 16px;
@@ -184,7 +188,9 @@
 
                 {#if isSignedIn}
                     <div class="profile-icon-cont">
-                        <ProfileIcon firstName="Marc" lastName="Hyeler" iconSize="48" fontSize="16"/>
+                        <a href="/dashboard" class="profile-link">
+                            <ProfileIcon firstName="Marc" lastName="Hyeler" iconSize="48" fontSize="16"/>
+                        </a>
                     </div>
                 {:else}
                     <a href="/login" class="nav-link special-link">Sign In</a>

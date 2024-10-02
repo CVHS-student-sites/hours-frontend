@@ -1,11 +1,10 @@
 <script>
-    import {Stretch} from "svelte-loading-spinners";
-    import {goto} from "$app/navigation";
+    import {loginStudent} from "$lib/api/global.js";
 
     let username = "";
     let password = "";
+    let remember = false;
 
-    let loading = false;
 
     function handleKeyPress(event) {
         if (event.key === "Enter") {
@@ -14,29 +13,22 @@
     }
 
     async function login() {
-        loading = true;
-        const response = await fetch(
-            "https://locker-api.cvapps.net/auth/login",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    password: password,
-                    username: username,
-                }),
-                credentials: "include",
-            },
-        );
 
-        if (response.ok) {
-            await goto("/admin");
-        } else {
-            let jsons = await response.json()
-            alert(jsons.message);
-            loading = false;
+        let data = {
+            studentID: username,
+            password: password,
+            rememberMe: remember,
         }
+
+        loginStudent(data)
+            .then((response) => {
+                console.log('Login successful:', response.data);
+                localStorage.setItem('token', response.data.token);
+            })
+            .catch((error) => {
+                const message = error.response?.data?.message || 'An unknown error occurred';
+                alert(message);
+            });
     }
 </script>
 
@@ -199,7 +191,7 @@
         column-gap: 5px;
     }
 
-    .tos-text{
+    .tos-text {
         color: var(--text);
         font-size: 14px;
     }
@@ -226,7 +218,7 @@
             background: unset;
         }
 
-        .top-text{
+        .top-text {
             font-size: 15px;
         }
 
@@ -273,7 +265,7 @@
                 />
 
                 <div class="tos">
-                    <input id="agreedtos" name="tos" type="checkbox" value="Boat">
+                    <input id="agreedtos" name="tos" type="checkbox" value="Boat" bind:checked={remember}>
                     <div class="tos-text">Remeber Me</div>
                 </div>
 
@@ -281,11 +273,11 @@
             </div>
         </div>
 
-<!--        <div class="loading-cont">-->
-<!--            {#if loading}-->
-<!--                <Stretch size="60" color="#577db2" unit="px" duration="1s"/>-->
-<!--            {/if}-->
-<!--        </div>-->
+        <!--        <div class="loading-cont">-->
+        <!--            {#if loading}-->
+        <!--                <Stretch size="60" color="#577db2" unit="px" duration="1s"/>-->
+        <!--            {/if}-->
+        <!--        </div>-->
 
         <div class="bottom-text">
             <div class="reg">Need an account?</div>
