@@ -164,8 +164,15 @@
         color: var(--text);
     }
 
+    @media only screen and (max-width: 1000px) {
+        .top-text {
+            display: none;
+        }
+
+    }
+
     @media only screen and (max-width: 600px) {
-        .top {
+        .top-navigation-container {
             display: none;
         }
 

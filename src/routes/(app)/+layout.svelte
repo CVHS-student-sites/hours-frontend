@@ -1,5 +1,6 @@
 <script>
     import TopNavigation from "$lib/components/composites/TopNavigation.svelte";
+    import BottomNavigation from "$lib/components/composites/BottomNavigation.svelte";
     // import Botnav from "$lib/components/Botnav.svelte";
 </script>
 
@@ -20,5 +21,5 @@
 <div class="layout-main">
     <TopNavigation/>
     <slot/>
-    <!--    <Botnav/>-->
+    <BottomNavigation/>
 </div>

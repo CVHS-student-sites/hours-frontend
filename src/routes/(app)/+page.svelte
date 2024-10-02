@@ -138,23 +138,35 @@
             height: 100%;
         }
 
+
         h1 {
-            font-size: 24px;
+            font-size: 20px;
         }
 
         h3 {
-            font-size: 16px;
+            font-size: 14px;
         }
 
         p {
             width: 90%;
-            font-size: 14px;
+            font-size: 12px;
+        }
+
+        .animation-cont{
+            height: 48px;
         }
 
         .list-cont {
             width: 90vw;
         }
 
+    }
+
+
+    @media screen and (max-width: 1115px) {
+        .tilt{
+            display: none;
+        }
     }
 </style>
 
@@ -200,7 +212,7 @@
 
             </div>
 
-            <div class="sub1" in:blur={{ delay: 250, duration: 300 }}>
+            <div class="sub1 tilt" in:blur={{ delay: 250, duration: 300 }}>
                 <HomeTilt/>
             </div>
         {/if}
