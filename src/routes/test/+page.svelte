@@ -63,7 +63,7 @@
         display: flex;
         flex-direction: column;
         /*background-color: var(--secondary);*/
-        border: 2px solid var(--primary);
+        border: 2px solid var(--secondary);
         position: relative;
         padding: 8px;
         height: 100px;
@@ -89,6 +89,7 @@
 
     .hour-text {
         font-size: 24px;
+        color: var(--text)
     }
 
     .date {
@@ -131,6 +132,15 @@
 
     .innter-text-1 {
         text-align: right;
+        color: #bebac4;
+    }
+
+    .comment-text {
+        color: #bebac4;
+    }
+
+    .pending {
+        color: darkgreen;
     }
 </style>
 
@@ -142,9 +152,9 @@
                 <div class="text-data-cont">
                     <div class="data-cont">
                         <div class="data-div">
-                            <div class="">May 1, 2024</div>
+                            <div class="comment-text">May 1, 2024</div>
                             <div class="hour-text">2 hours</div>
-                            <div class="comment-text">Pending</div>
+                            <div class="comment-text pending">Completed</div>
                         </div>
                     </div>
                     <div class="info-cont">

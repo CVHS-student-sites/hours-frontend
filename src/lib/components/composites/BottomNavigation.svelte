@@ -54,14 +54,6 @@
         user-select: none;
     }
 
-    :root {
-        --text: #d6d6d6;
-        --background: #101014;
-        --primary: #0084ff;
-        --secondary: #1b2c42;
-        --accent: #577db2;
-    }
-
     .icon-background {
         position: relative;
         display: flex;
