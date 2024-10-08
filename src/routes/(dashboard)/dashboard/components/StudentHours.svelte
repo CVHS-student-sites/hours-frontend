@@ -56,7 +56,6 @@
         display: flex;
         flex-direction: column;
         gap: 5px;
-
     }
 
     .element-cont {
@@ -147,7 +146,6 @@
     }
 </style>
 
-<div class="main">
     <div class="table-cont">
         {#each data as item, i}
             <div class="element-cont">
@@ -180,4 +178,3 @@
 
         {/each}
     </div>
-</div>
