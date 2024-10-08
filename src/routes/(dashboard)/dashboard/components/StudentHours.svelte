@@ -157,7 +157,7 @@
                         <div class="data-div">
                             <div class="comment-text">May 1, 2024</div>
                             <div class="hour-text">2 hours</div>
-<!--                            <div class="comment-text pending">Completed</div>-->
+                            <!--                            <div class="comment-text pending">Completed</div>-->
                             <div class="material-symbols-outlined complete">
                                 check_circle
                             </div>
@@ -169,7 +169,7 @@
 
 
                             <ProfileIcon iconSize={42} fontSize={14} firstName="Marc" lastName="Hyeler"/>
-<!--                             <div class="innter-text-1">Falcon Robotics FLL</div>-->
+                            <!--                             <div class="innter-text-1">Falcon Robotics FLL</div>-->
                         </div>
 
                     </div>
