@@ -2,7 +2,7 @@ import axiosInstance from "$lib/api/config/axios.js";
 
 export async function checkLoginStatus() {
     const token = localStorage.getItem('token');
-    return  await axiosInstance.get('/auth/check-auth', {
+    return await axiosInstance.get('/auth/check-auth', {
         withCredentials: true,
         headers: {
             'Authorization': `Bearer ${token}`
