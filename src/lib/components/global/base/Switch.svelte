@@ -2,7 +2,7 @@
     export let checked = false;
 
     function toggleSwitch() {
-        checked = !checked; // Toggle the checked state
+        checked = !checked;
     }
 </script>
 
@@ -21,11 +21,11 @@
     }
 
     .switch-root.checked {
-        background-color: #3a81f5;
+        background-color: var(--primary);
     }
 
     .switch-root.unchecked {
-        background-color: #1d283a;
+        background-color: var(--secondary);
     }
 
     .switch-thumb {
