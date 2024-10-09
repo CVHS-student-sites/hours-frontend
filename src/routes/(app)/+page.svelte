@@ -212,9 +212,9 @@
 
             </div>
 
-            <div class="sub1 tilt" in:blur={{ delay: 250, duration: 300 }}>
-                <HomeTilt/>
-            </div>
+<!--            <div class="sub1 tilt" in:blur={{ delay: 250, duration: 300 }}>-->
+<!--                <HomeTilt/>-->
+<!--            </div>-->
         {/if}
     </div>
 </div>

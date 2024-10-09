@@ -4,6 +4,7 @@
 
     import {checkLoginStatus} from "$lib/api/global.js";
     import {onMount} from 'svelte';
+    import {blur} from 'svelte/transition';
 
     let isSignedIn = false;
     let response;
@@ -54,15 +55,8 @@
         user-select: none;
     }
 
-    .icon-background {
-        position: relative;
-        display: flex;
-        justify-content: space-around;
-        height: 32px;
-        width: 100vw;
-    }
 
-    .icon-stack {
+    .icon-group {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -73,21 +67,14 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* .icon-stack:hover{
-        background-color: #101014;
-        border-radius: 6px;
-    } */
 
     .stack-text {
-        /* font-family: Mo; */
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 14px;
         color: var(--text);
         user-select: none;
-        width: 64px;
-        -webkit-tap-highlight-color: transparent;
     }
 
     .material-symbols-outlined {
@@ -101,8 +88,8 @@
         border-radius: 16px;
         -webkit-tap-highlight-color: transparent;
         font-size: 30px;
-        width: 48px;
-        height: 48px;
+        width: 30px;
+        height: 30px;
     }
 
     .icond {
@@ -115,79 +102,77 @@
         display: flex;
         align-items: center;
         -webkit-tap-highlight-color: transparent;
-        height: 48px;
+        /*height: 48px;*/
         justify-content: space-around;
     }
 
 
-    .top {
+    .botnav-main {
         font-family: "Montserrat", sans-serif;
         width: 100vw;
         display: flex;
-        /*background-color: #101014;*/
-        /* background-color: #1b2c42; */
         justify-content: space-between;
         flex-direction: row;
         margin-bottom: 10px;
     }
 
-    .test {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 64px;
-        border-radius: 50px;
-        height: 32px;
-        background-color: #003566;
-        z-index: 9998;
-    }
-
-    .visible {
-        display: none;
-    }
-
-    .text-cont {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: space-around;
-    }
-
-
     @media only screen and (min-width: 600px) {
-        .top {
+        .botnav-main {
             display: none; /* Hide the entire top container */
         }
     }
 </style>
 
-<div class="top">
+<div class="botnav-main">
     <div class="icon-cont">
         <a href="/">
-            <div class="material-symbols-outlined icond" in:fade={{ duration: 300 }}>
-                home
+            <div class="icon-group">
+                <div class="material-symbols-outlined icond">
+                    home
+                </div>
+                <div class="stack-text">Home</div>
             </div>
         </a>
         <a href="/help">
-            <div class="material-symbols-outlined icond" in:fade={{ duration: 300 }}>
-                question_mark
+            <div class="icon-group">
+                <div class="material-symbols-outlined icond">
+                    question_mark
+                </div>
+                <div class="stack-text">Help</div>
             </div>
         </a>
-        <a href="/register">
-            <div class="material-symbols-outlined icond" in:fade={{ duration: 300 }}>
-                person_add
-            </div>
-        </a>
+        {#if isSignedIn}
+            <a href="/scan">
+                <div class="icon-group">
+                    <div class="material-symbols-outlined icond">
+                        qr_code_scanner
+                    </div>
+                    <div class="stack-text">Scan</div>
+                </div>
+            </a>
+        {:else}
+            <a href="/register">
+                <div class="icon-group">
+                    <div class="material-symbols-outlined icond" >
+                        person_add
+                    </div>
+                    <div class="stack-text">Register</div>
+                </div>
+            </a>
+        {/if}
 
         {#if isSignedIn}
-            <a href="/dashboard">
+            <a href="/dashboard" in:blur={{delay: 150, duration: 300}}>
                 <ProfileIcon firstName={response.data.user.firstName} lastName={response.data.user.lastName}
                              iconSize="48" fontSize="16"/>
             </a>
         {:else}
             <a href="/login">
-                <div class="material-symbols-outlined icond" in:fade={{ duration: 300 }}>
-                    login
+                <div class="icon-group">
+                    <div class="material-symbols-outlined icond" in:fade={{ duration: 300 }}>
+                        login
+                    </div>
+                    <div class="stack-text">Login</div>
                 </div>
             </a>
         {/if}
