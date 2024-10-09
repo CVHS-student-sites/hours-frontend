@@ -1,5 +1,6 @@
 <script>
 import Switch from "$lib/components/global/base/Switch.svelte";
+import Confirm from "$lib/components/global/elements/Confirm.svelte";
 </script>
 
 <style>
@@ -10,6 +11,7 @@ import Switch from "$lib/components/global/base/Switch.svelte";
 </style>
 
 <h1>you are a student</h1>
-<Switch/>
+<!--<Switch/>-->
+<!--<Confirm showDialog={true} heading="Are you absolutely sure?" message="This action cannot be undone. This will permanently delete your account and remove your data from our servers."/>-->
 <div class="hours-cont">
 </div>
