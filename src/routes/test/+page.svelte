@@ -1,5 +1,5 @@
 <script>
-    import ProfileIcon from "$lib/components/app/ProfileIcon.svelte";
+    import ProfileIcon from "$lib/components/global/base/ProfileIcon.svelte";
 
     let date = new Date();
     let data = [

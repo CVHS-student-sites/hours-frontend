@@ -1,6 +1,4 @@
-<h1>you are a student</h1>
 <script>
-    import StudentHours from "../components/StudentHours.svelte";
 </script>
 
 <style>
@@ -10,6 +8,6 @@
     }
 </style>
 
+<h1>you are a student</h1>
 <div class="hours-cont">
-    <StudentHours/>
 </div>

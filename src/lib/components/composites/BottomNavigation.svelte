@@ -1,6 +1,6 @@
 <script>
     import {fade} from 'svelte/transition';
-    import ProfileIcon from "$lib/components/app/ProfileIcon.svelte";
+    import ProfileIcon from "$lib/components/global/base/ProfileIcon.svelte";
 
     import {checkLoginStatus} from "$lib/api/global.js";
     import {onMount} from 'svelte';
