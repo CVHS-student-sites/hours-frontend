@@ -5,6 +5,8 @@
     import Action from './Action.svelte';
     import Selection from './Selection.svelte';
 
+    import StatusCell from "$lib/components/global/elements/table/StatusCell.svelte";
+
 
     let filterHour;
     $:{
@@ -66,6 +68,11 @@
             header: "Status",
             accessor: "status",
             plugins: {sort: {disable: false}, tableFilter: {exclude: false}},
+            cell: ({ value }) => {
+                return createRender(StatusCell, {
+                    value,
+                });
+            },
         }),
         table.column({
             header: "First Name",
@@ -153,7 +160,7 @@
                 <tr {...rowAttrs}>
                     {#each headerRow.cells as cell (cell.id)}
                         <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
-                            <th {...attrs} on:click={props.sort.toggle}>
+                            <th {...attrs} on:click={props.sort.toggle} class="table-header">
                                 <Render of={cell.render()}/>
                                 {#if props.sort.order === 'asc'}
                                     ⬇️
@@ -173,7 +180,7 @@
                 <tr {...rowAttrs} class:matches={$selectedDataIds[row.id] && "selected"}>
                     {#each row.cells as cell (cell.id)}
                         <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
-                            <td {...attrs} class:matches={props.tableFilter.matches}>
+                            <td {...attrs} class:matches={props.tableFilter.matches} class="table-row">
                                 <Render of={cell.render()}/>
                             </td>
                         </Subscribe>
@@ -188,17 +195,27 @@
 <style>
     .table-cont{
         display: flex;
-        width: 800px;
+        width: 100%;
+    }
+
+    .table-row{
+        padding: 8px;
+        box-sizing: content-box;
+    }
+
+    .table-header{
+        text-align: left;
     }
     table {
         border-spacing: 0;
         border-top: 1px solid black;
         border-left: 1px solid black;
+        border-right: 1px solid black;
+        width: 100%;
     }
 
     th, td {
         border-bottom: 1px solid black;
-        border-right: 1px solid black;
         padding: 0.5rem;
     }
 
