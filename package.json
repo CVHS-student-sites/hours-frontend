@@ -28,6 +28,7 @@
 		"bits-ui": "^0.21.16",
 		"qrcode": "^1.5.4",
 		"socket.io-client": "^4.8.0",
+		"svelte-headless-table": "^0.18.2",
 		"svelte-qrcode": "^1.0.0",
 		"vanilla-tilt": "^1.8.1"
 	}
