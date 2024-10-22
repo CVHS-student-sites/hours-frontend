@@ -3,16 +3,18 @@
     import StudentDashboard from "./views/StudentDashboard.svelte";
     import SupervisorDashboard from "./views/SupervisorDashboard.svelte";
 
-    import {BarLoader, Moon} from "svelte-loading-spinners";
+    import {BarLoader} from "svelte-loading-spinners";
     import {checkLoginStatus} from "$lib/api/global.js";
     import {onMount} from "svelte";
     import {goto} from "$app/navigation";
+    import {blur} from 'svelte/transition';
 
     let currentView;
     let loading = true;
     let role;
 
-    //todo might be cool to start an initial loading procedure here for views, but I dont think that's worth it honestly
+    //todo might be cool to start an initial loading procedure here for views, dashboard state should be loaded in this block to a global store and then ui should be updated
+
     onMount(async () => {
         console.log();
         let loginCheckResponse = await checkLoginStatus();
@@ -33,6 +35,7 @@
 
 <style>
     .loading-cont {
+        position: absolute;
         width: 100%;
         height: 100%;
         display: flex;
@@ -49,7 +52,7 @@
 </style>
 
 {#if loading}
-    <div class="loading-cont">
+    <div class="loading-cont" out:blur={{ duration: 150}}>
         <BarLoader size="100" color="#0084ff" unit="px" duration="1.2s"/>
         <div class="loading-text">Loading your dashboard</div>
     </div>
