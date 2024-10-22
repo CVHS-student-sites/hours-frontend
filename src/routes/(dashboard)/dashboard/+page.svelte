@@ -3,7 +3,7 @@
     import StudentDashboard from "./views/StudentDashboard.svelte";
     import SupervisorDashboard from "./views/SupervisorDashboard.svelte";
 
-    import {Moon} from "svelte-loading-spinners";
+    import {BarLoader, Moon} from "svelte-loading-spinners";
     import {checkLoginStatus} from "$lib/api/global.js";
     import {onMount} from "svelte";
     import {goto} from "$app/navigation";
@@ -50,7 +50,7 @@
 
 {#if loading}
     <div class="loading-cont">
-        <Moon size="60" color="#0084ff" unit="px" duration="0.6s"/>
+        <BarLoader size="100" color="#0084ff" unit="px" duration="1.2s"/>
         <div class="loading-text">Loading your dashboard</div>
     </div>
 {:else}
