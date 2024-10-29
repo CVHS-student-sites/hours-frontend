@@ -17,8 +17,14 @@
         background-color: black;
     }
 
+    .transition-colors {
+        transition-property: background-image,background-color,border-color,text-decoration-color,fill,stroke;
+        transition-timing-function: cubic-bezier(.4,0,.2,1);
+        transition-duration: .15s;
+    }
+
     .action-btn:hover {
-        background-color: var(--accent);
+        background-color: var(--secondary);
         cursor: pointer;
     }
 
@@ -31,6 +37,6 @@
     }
 </style>
 
-<div class="action-btn" on:click={click}>
+<div class="action-btn transition-colors" on:click={click}>
     <div class="material-symbols-outlined">more_vert</div>
 </div>
