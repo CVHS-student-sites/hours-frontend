@@ -5,14 +5,14 @@
     import Action from './Action.svelte';
     import Selection from './Selection.svelte';
 
-    import StatusCell from "$lib/components/global/elements/table/StatusCell.svelte";
+    import StatusCell from "./StatusCell.svelte";
 
 
     let filterHour;
     $:{
-        if(filterHour){
+        if (filterHour) {
             $filterValue = "pending"
-        }else{
+        } else {
             $filterValue = ""
         }
     }
@@ -68,7 +68,7 @@
             header: "Status",
             accessor: "status",
             plugins: {sort: {disable: false}, tableFilter: {exclude: false}},
-            cell: ({ value }) => {
+            cell: ({value}) => {
                 return createRender(StatusCell, {
                     value,
                 });
@@ -114,98 +114,28 @@
     const {selectedDataIds} = pluginStates.select;
 </script>
 
-<pre>{JSON.stringify(
-    {
-        $pageIndex: $pageIndex,
-        $pageCount: $pageCount,
-        $pageSize: $pageSize,
-    },
-    null,
-    2,
-)}</pre>
-
-<pre>{JSON.stringify(
-    {
-        $selectedDataIds: $selectedDataIds,
-    },
-    null,
-    2,
-)}</pre>
-
-<input bind:value={$filterValue} placeholder="Search rows..." type="text"/>
-
-<div>
-    <button
-            disabled={!$hasPreviousPage}
-            on:click={() => $pageIndex--}>Previous page
-    </button
-    >
-    {$pageIndex + 1} out of {$pageCount}
-    <button
-            disabled={!$hasNextPage}
-            on:click={() => $pageIndex++}>Next page
-    </button
-    >
-</div>
-<label for="page-size">Page size</label>
-<input bind:value={$pageSize} id="page-size" min={1} type="number"/>
-
-<input type="checkbox" bind:checked={filterHour}/>
-
-<div class="table-cont">
-    <table {...$tableAttrs}>
-        <thead>
-        {#each $headerRows as headerRow (headerRow.id)}
-            <Subscribe rowAttrs={headerRow.attrs()} let:rowAttrs>
-                <tr {...rowAttrs}>
-                    {#each headerRow.cells as cell (cell.id)}
-                        <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
-                            <th {...attrs} on:click={props.sort.toggle} class="table-header">
-                                <Render of={cell.render()}/>
-                                {#if props.sort.order === 'asc'}
-                                    ⬇️
-                                {:else if props.sort.order === 'desc'}
-                                    ⬆️
-                                {/if}
-                            </th>
-                        </Subscribe>
-                    {/each}
-                </tr>
-            </Subscribe>
-        {/each}
-        </thead>
-        <tbody {...$tableBodyAttrs}>
-        {#each $pageRows as row (row.id)}
-            <Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-                <tr {...rowAttrs} class:matches={$selectedDataIds[row.id] && "selected"}>
-                    {#each row.cells as cell (cell.id)}
-                        <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
-                            <td {...attrs} class:matches={props.tableFilter.matches} class="table-row">
-                                <Render of={cell.render()}/>
-                            </td>
-                        </Subscribe>
-                    {/each}
-                </tr>
-            </Subscribe>
-        {/each}
-        </tbody>
-    </table>
-</div>
-
 <style>
-    .table-cont{
+    .admin-table-root {
+        display: flex;
+        flex: 1;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .table-cont {
         display: flex;
         width: 100%;
     }
 
-    .table-row{
+    .table-row {
         padding: 8px;
         box-sizing: content-box;
     }
 
-    .table-header{
+    .table-header {
         text-align: left;
     }
+
     table {
         border-spacing: 0;
         border-top: 1px solid black;
@@ -223,3 +153,84 @@
         background: rgba(46, 196, 182, 0.2);
     }
 </style>
+
+<div class="admin-table-root">
+
+<pre>{JSON.stringify(
+    {
+        $pageIndex: $pageIndex,
+        $pageCount: $pageCount,
+        $pageSize: $pageSize,
+    },
+    null,
+    2,
+)}</pre>
+
+    <pre>{JSON.stringify(
+        {
+            $selectedDataIds: $selectedDataIds,
+        },
+        null,
+        2,
+    )}</pre>
+
+    <input bind:value={$filterValue} placeholder="Search rows..." type="text"/>
+
+    <div>
+        <button
+                disabled={!$hasPreviousPage}
+                on:click={() => $pageIndex--}>Previous page
+        </button
+        >
+        {$pageIndex + 1} out of {$pageCount}
+        <button
+                disabled={!$hasNextPage}
+                on:click={() => $pageIndex++}>Next page
+        </button
+        >
+    </div>
+    <label for="page-size">Page size</label>
+    <input bind:value={$pageSize} id="page-size" min={1} type="number"/>
+
+    <input type="checkbox" bind:checked={filterHour}/>
+
+    <div class="table-cont">
+        <table {...$tableAttrs}>
+            <thead>
+            {#each $headerRows as headerRow (headerRow.id)}
+                <Subscribe rowAttrs={headerRow.attrs()} let:rowAttrs>
+                    <tr {...rowAttrs}>
+                        {#each headerRow.cells as cell (cell.id)}
+                            <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
+                                <th {...attrs} on:click={props.sort.toggle} class="table-header">
+                                    <Render of={cell.render()}/>
+                                    {#if props.sort.order === 'asc'}
+                                        ⬇️
+                                    {:else if props.sort.order === 'desc'}
+                                        ⬆️
+                                    {/if}
+                                </th>
+                            </Subscribe>
+                        {/each}
+                    </tr>
+                </Subscribe>
+            {/each}
+            </thead>
+            <tbody {...$tableBodyAttrs}>
+            {#each $pageRows as row (row.id)}
+                <Subscribe rowAttrs={row.attrs()} let:rowAttrs>
+                    <tr {...rowAttrs} class:matches={$selectedDataIds[row.id] && "selected"}>
+                        {#each row.cells as cell (cell.id)}
+                            <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
+                                <td {...attrs} class:matches={props.tableFilter.matches} class="table-row">
+                                    <Render of={cell.render()}/>
+                                </td>
+                            </Subscribe>
+                        {/each}
+                    </tr>
+                </Subscribe>
+            {/each}
+            </tbody>
+        </table>
+    </div>
+</div>
