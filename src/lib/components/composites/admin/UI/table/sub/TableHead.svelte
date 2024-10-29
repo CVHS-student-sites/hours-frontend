@@ -1,26 +1,25 @@
-<script lang="ts">
-    let className: string | undefined | null = undefined;
-    export { className as class };
-    export let props: {
-        select: never;
+<script>
+
+    export let props = {
+        select: null,
         sort: {
-            order: "desc" | "asc" | undefined;
-            toggle: (_: Event) => void;
-            clear: () => void;
-            disabled: boolean;
-        };
-        filter: never;
+            order: undefined,
+            toggle: (_) => {},
+            clear: () => {},
+            disabled: false,
+        },
+        filter: null,
     };
-    export let cellId: string;
+    export let cellId;
 
     let isDropdownOpen = false;
 
-    function handleAscSort(e: Event) {
+    function handleAscSort(e) {
         if (props.sort.order === "asc") return;
         props.sort.toggle(e);
     }
 
-    function handleDescSort(e: Event) {
+    function handleDescSort(e) {
         if (props.sort.order === "desc") return;
         if (props.sort.order === undefined) {
             props.sort.toggle(e); // Toggle from undefined to 'asc'
@@ -45,29 +44,8 @@
         display: flex;
         align-items: center;
         cursor: pointer;
-    }
-    .dropdown-content {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background: white;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 0.5rem;
-        display: none;
-    }
-    .dropdown-container[data-open="true"] .dropdown-content {
-        display: block;
-    }
-    .dropdown-item {
-        display: flex;
-        align-items: center;
-        padding: 0.25rem 0.5rem;
-        cursor: pointer;
-    }
-    .dropdown-item:hover {
-        background: #f0f0f0;
+        color: var(--muted);
+        padding: 0;
     }
     .icon {
         margin-right: 0.5rem;
@@ -76,7 +54,7 @@
 </style>
 
 {#if !props.sort.disabled}
-    <div class="dropdown-container" data-open={isDropdownOpen} class={className}>
+    <div class="dropdown-container" data-open={isDropdownOpen}>
         <button
                 class="dropdown-button"
                 on:click={() => (isDropdownOpen = !isDropdownOpen)}
@@ -92,19 +70,6 @@
                 <span class="icon">↕️</span>
             {/if}
         </button>
-
-        <div class="dropdown-content" role="menu">
-            <div class="dropdown-item" on:click={handleAscSort}>
-                <span class="icon">⬆️</span> Asc
-            </div>
-            <div class="dropdown-item" on:click={handleDescSort}>
-                <span class="icon">⬇️</span> Desc
-            </div>
-            <hr />
-            <div class="dropdown-item" on:click={handleHide}>
-                <span class="icon">👁️</span> Hide
-            </div>
-        </div>
     </div>
 {:else}
     <slot />

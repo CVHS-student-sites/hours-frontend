@@ -7,6 +7,8 @@
 
     import StatusCell from "./StatusCell.svelte";
 
+    import TableHead from "./sub/TableHead.svelte";
+
 
     let filterHour;
     $:{
@@ -49,6 +51,7 @@
                 return createRender(Selection, {
                     isSelected,
                     isSomeSubRowsSelected,
+                    class: "checkbox-cell", // Add this line
                 });
             },
             plugins: {
@@ -56,12 +59,15 @@
                     disable: true,
                 },
             },
+            attrs: {
+                class: 'checkbox-cell'  // Add this line
+            }
         }),
 
         table.column({
             header: "Student ID",
             accessor: "id",
-            plugins: {sort: {disable: false}, tableFilter: {exclude: false}},
+            plugins: {sort: {disable: true}, tableFilter: {exclude: false}},
         }),
 
         table.column({
@@ -103,8 +109,10 @@
             },
         }),
     ]);
+    const tableModel = table.createViewModel(columns);
 
-    const {headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates} = table.createViewModel(columns);
+    const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } = tableModel;
+    // const {headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates} = table.createViewModel(columns);
     const {pageIndex, pageCount, pageSize, hasNextPage, hasPreviousPage} = pluginStates.page;
 
     const {filterValue} = pluginStates.tableFilter;
@@ -136,6 +144,8 @@
     }
 
     .table-header {
+        padding-left: 8px;
+        padding-right: 8px;
         text-align: left;
         height: 2rem;
         box-sizing: border-box;
@@ -146,6 +156,20 @@
         width: 100%;
         border-collapse: collapse;
         margin: 0;
+    }
+
+    /* Remove padding and set a fixed width for the checkbox column */
+    td:first-child {
+        padding-right: 0;
+        width: 20px;  /* Adjust this width as needed */
+        text-align: center; /* Center-align the checkbox */
+    }
+
+    th:first-child {
+        padding-left: 8px;
+        padding-right: 0;
+        width: 20px;  /* Adjust this width as needed */
+        text-align: center; /* Center-align the checkbox */
     }
 
     .table-head{
@@ -173,43 +197,31 @@
 
 <div class="admin-table-root">
 
-<pre>{JSON.stringify(
-    {
-        $pageIndex: $pageIndex,
-        $pageCount: $pageCount,
-        $pageSize: $pageSize,
-    },
-    null,
-    2,
-)}</pre>
+<!--<pre>{JSON.stringify(-->
+    <!--    {-->
+    <!--        $pageIndex: $pageIndex,-->
+    <!--        $pageCount: $pageCount,-->
+    <!--        $pageSize: $pageSize,-->
+    <!--    },-->
+    <!--    null,-->
+    <!--    2,-->
+    <!--)}</pre>-->
 
-    <pre>{JSON.stringify(
-        {
-            $selectedDataIds: $selectedDataIds,
-        },
-        null,
-        2,
-    )}</pre>
+    <!--    <pre>{JSON.stringify(-->
+    <!--        {-->
+    <!--            $selectedDataIds: $selectedDataIds,-->
+    <!--        },-->
+    <!--        null,-->
+    <!--        2,-->
+    <!--    )}</pre>-->
 
     <input bind:value={$filterValue} placeholder="Search rows..." type="text"/>
 
-    <div>
-        <button
-                disabled={!$hasPreviousPage}
-                on:click={() => $pageIndex--}>Previous page
-        </button
-        >
-        {$pageIndex + 1} out of {$pageCount}
-        <button
-                disabled={!$hasNextPage}
-                on:click={() => $pageIndex++}>Next page
-        </button
-        >
-    </div>
-    <label for="page-size">Page size</label>
-    <input bind:value={$pageSize} id="page-size" min={1} type="number"/>
 
-    <input bind:checked={filterHour} type="checkbox"/>
+<!--    <label for="page-size">Page size</label>-->
+<!--    <input bind:value={$pageSize} id="page-size" min={1} type="number"/>-->
+
+<!--    <input bind:checked={filterHour} type="checkbox"/>-->
 
     <div class="table-cont">
         <table {...$tableAttrs}>
@@ -220,13 +232,20 @@
                         {#each headerRow.cells as cell (cell.id)}
                             <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
                                 <th {...attrs} on:click={props.sort.toggle} class="table-header">
-                                    <Render of={cell.render()}/>
-                                    {#if props.sort.order === 'asc'}
-                                        ⬇️
-                                    {:else if props.sort.order === 'desc'}
-                                        ⬆️
+                                    {#if cell.id !== "select" && cell.id !== "actions"}
+                                        <TableHead
+                                                {props}
+                                                {tableModel}
+                                                cellId={cell.id}
+                                        >
+                                            <Render of={cell.render()} /></TableHead
+                                        >
+                                    {:else}
+                                        <Render of={cell.render()} />
                                     {/if}
                                 </th>
+
+
                             </Subscribe>
                         {/each}
                     </tr>
@@ -249,5 +268,18 @@
             {/each}
             </tbody>
         </table>
+    </div>
+    <div>
+        <button
+                disabled={!$hasPreviousPage}
+                on:click={() => $pageIndex--}>Previous page
+        </button
+        >
+        {$pageIndex + 1} out of {$pageCount}
+        <button
+                disabled={!$hasNextPage}
+                on:click={() => $pageIndex++}>Next page
+        </button
+        >
     </div>
 </div>
