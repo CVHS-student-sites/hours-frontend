@@ -125,6 +125,9 @@
     .table-cont {
         display: flex;
         width: 100%;
+        border-radius: 10px;
+        border: 1px solid var(--muted);
+        box-sizing: border-box;
     }
 
     .table-row {
@@ -134,23 +137,37 @@
 
     .table-header {
         text-align: left;
+        height: 2rem;
+        box-sizing: border-box;
+        color: var(--muted);
     }
 
     table {
-        border-spacing: 0;
-        border-top: 1px solid black;
-        border-left: 1px solid black;
-        border-right: 1px solid black;
         width: 100%;
+        border-collapse: collapse;
+        margin: 0;
     }
 
-    th, td {
-        border-bottom: 1px solid black;
+    .table-head{
+        height: 2.5rem;
+    }
+
+    th {
+        height: 2.5rem;
+        border-bottom: 1px solid var(--muted);
+    }
+
+    tr {
+        border-bottom: 1px solid var(--muted);
         padding: 0.5rem;
     }
 
     .matches {
         background: rgba(46, 196, 182, 0.2);
+    }
+
+    tr:last-child {
+        border-width: 0px;
     }
 </style>
 
@@ -192,14 +209,14 @@
     <label for="page-size">Page size</label>
     <input bind:value={$pageSize} id="page-size" min={1} type="number"/>
 
-    <input type="checkbox" bind:checked={filterHour}/>
+    <input bind:checked={filterHour} type="checkbox"/>
 
     <div class="table-cont">
         <table {...$tableAttrs}>
-            <thead>
+            <thead class="table-head">
             {#each $headerRows as headerRow (headerRow.id)}
                 <Subscribe rowAttrs={headerRow.attrs()} let:rowAttrs>
-                    <tr {...rowAttrs}>
+                    <tr {...rowAttrs} class="table-ro">
                         {#each headerRow.cells as cell (cell.id)}
                             <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
                                 <th {...attrs} on:click={props.sort.toggle} class="table-header">
@@ -219,7 +236,7 @@
             <tbody {...$tableBodyAttrs}>
             {#each $pageRows as row (row.id)}
                 <Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-                    <tr {...rowAttrs} class:matches={$selectedDataIds[row.id] && "selected"}>
+                    <tr {...rowAttrs} class:matches={$selectedDataIds[row.id] && "selected"} class="table-ro">
                         {#each row.cells as cell (cell.id)}
                             <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
                                 <td {...attrs} class:matches={props.tableFilter.matches} class="table-row">

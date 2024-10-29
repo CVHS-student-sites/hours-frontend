@@ -4,6 +4,7 @@
     --primary: #0084ff;
     --secondary: #1b2c42;
     --accent: #743fde;
+    --muted: hsl(240 3.7% 15.9%);
 }
 /*Values should be these*/
 /*--text: #ecebee;*/
