@@ -2,7 +2,7 @@ import {redirect} from '@sveltejs/kit';
 
 export async function load({cookies}) {
 
-    if (true) {
+    if (import.meta.env.PROD) {
         const auth = cookies.get('token');
 
         let response;
