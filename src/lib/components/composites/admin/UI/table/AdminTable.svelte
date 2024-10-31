@@ -15,7 +15,7 @@
         if (filterHour) {
             $filterValue = "pending"
         } else {
-            $filterValue = ""
+            $filterValue = "";
         }
     }
     let rawData = [{"id":"968348","email":"ddenley0@acquirethisname.com","firstName":"Dyanne","lastName":"Denley","totalHours":18},

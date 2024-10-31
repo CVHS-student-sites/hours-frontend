@@ -4,17 +4,20 @@ import globals from 'globals';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-	js.configs.recommended,
-	...svelte.configs['flat/recommended'],
-	{
-		languageOptions: {
-			globals: {
-				...globals.browser,
-				...globals.node
-			}
-		}
-	},
-	{
-		ignores: ['build/', '.svelte-kit/', 'dist/']
-	}
+    js.configs.recommended,
+    ...svelte.configs['flat/recommended'],
+    {
+        languageOptions: {
+            globals: {
+                ...globals.browser,
+                ...globals.node
+            }
+        },
+        rules: {
+            'semi': ['error', 'always']
+        }
+    },
+    {
+        ignores: ['build/', '.svelte-kit/', 'dist/']
+    }
 ];

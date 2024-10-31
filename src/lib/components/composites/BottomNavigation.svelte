@@ -11,7 +11,7 @@
 
     //todo this should be forced server side logic
     onMount(async () => {
-        response = await checkLoginStatus()
+        response = await checkLoginStatus();
         isSignedIn = response.data.signedIn;
     });
 

@@ -19,7 +19,7 @@
             studentID: username,
             password: password,
             rememberMe: remember,
-        }
+        };
 
         loginStudent(data)
             .then((response) => {

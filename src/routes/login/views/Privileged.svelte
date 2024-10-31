@@ -19,7 +19,7 @@
             username: username,
             password: password,
             rememberMe: remember,
-        }
+        };
 
         loginPrivileged(data)
             .then((response) => {

@@ -1,7 +1,7 @@
 <script>
     import {page} from '$app/stores';
 
-    console.log($page.url.pathname)
+    console.log($page.url.pathname);
 
     let selectPage;
     $: if ($page.url.pathname === '/admin') selectPage = 0;
