@@ -1,5 +1,4 @@
 <script>
-    // views
     import StudentDashboard from "./views/StudentDashboard.svelte";
     import SupervisorDashboard from "./views/SupervisorDashboard.svelte";
 
@@ -8,15 +7,15 @@
     import {onMount} from "svelte";
     import {goto} from "$app/navigation";
     import {blur} from 'svelte/transition';
+    import {loadStudentData} from "$lib/api/utils/state.js";
 
     let currentView;
     let loading = true;
     let role;
 
-    //todo might be cool to start an initial loading procedure here for views, dashboard state should be loaded in this block to a global store and then ui should be updated
-
     onMount(async () => {
-        console.log();
+        loading = true;
+
         let loginCheckResponse = await checkLoginStatus();
         if (!loginCheckResponse.data.signedIn) {
             await goto('/login');
@@ -24,7 +23,11 @@
             role = loginCheckResponse.data.user.role;
             console.log(role);
 
-            if (role === "student") currentView = StudentDashboard;
+            //todo depending on the role, lets preload data into a store in this block
+            if (role === "student"){
+                currentView = StudentDashboard;
+                await loadStudentData();
+            }
             if (role === "supervisor") currentView = SupervisorDashboard;
             if (role === "admin") await goto('/admin');
 
@@ -52,7 +55,7 @@
 </style>
 
 {#if loading}
-    <div class="loading-cont" out:blur={{ duration: 150}}>
+    <div class="loading-cont" out:blur={{ duration: 200}}>
         <BarLoader size="100" color="#0084ff" unit="px" duration="1.2s"/>
         <div class="loading-text">Loading your dashboard</div>
     </div>
