@@ -1,13 +1,12 @@
 import {redirect} from '@sveltejs/kit';
 
-export async function load({cookies}) {
-
+export async function load({cookies, url}) {
     if (import.meta.env.PROD) {
         const auth = cookies.get('token');
 
         let response;
         try {
-            response = await fetch('http://localhost:3000/auth/check-auth', {
+            response = await fetch(`${url.origin}/api/auth/check-auth`, {
                 credentials: 'include',
                 headers: {
                     'Authorization': `Bearer ${auth}`,
