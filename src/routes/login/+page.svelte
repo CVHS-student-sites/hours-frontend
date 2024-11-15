@@ -43,6 +43,7 @@
     .logo {
         height: 70px;
         cursor: pointer;
+        user-select: none;
     }
 
     .top-text {
