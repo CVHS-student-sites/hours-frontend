@@ -20,6 +20,7 @@
     h1 {
         margin: 0;
         font-size: 36px;
+        color: var(--text);
     }
 
     .logo {
@@ -30,12 +31,13 @@
         font-family: "Montserrat", sans-serif;
         display: flex;
         flex-direction: column;
-        height: 100vh;
+        height: 100%;
         width: 100vw;
         flex: 1;
         align-items: center;
         justify-content: center;
         background-color: var(--background);
+        position: absolute;
     }
 
     .sub {
@@ -51,14 +53,14 @@
     .message{
         font-size: 18px;
         margin: 0;
+        color: var(--light-text);
     }
 </style>
 
 <div class="main">
     <div class="sub">
-        <div class="message">Oops! Something broke...</div>
-        <div class="message">Probably your fault, but we’ll pretend it's ours.</div>
+        <h1>{$page.status}</h1>
         <a href="/"><img alt="cv logo" class="logo" loading="eager" rel="preload" src="/assets/CVHS-logo.png"/></a>
-        <h1>{$page.status} {$page.error.message}</h1>
+        <h2 class="message">{$page.error.message}</h2>
     </div>
 </div>

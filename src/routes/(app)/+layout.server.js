@@ -1,4 +1,4 @@
-import {redirect} from "@sveltejs/kit";
+import { error } from '@sveltejs/kit';
 
 export async function load({cookies}) {
     const auth = cookies.get('token');
@@ -11,10 +11,13 @@ export async function load({cookies}) {
                 'Authorization': `Bearer ${auth}`,
             },
         });
-    } catch (error) {
-        console.error("Error getting user profile:", error);
-        redirect(302, '/');
+    } catch (err) {
+        console.error("Error getting user profile:", err);
+        error(503, {
+            message: 'API Origin Server Offline'
+        });
     }
+
 
     return {
         response: await response.json()

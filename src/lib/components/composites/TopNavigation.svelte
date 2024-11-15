@@ -182,7 +182,7 @@
                     <a href="/"><img alt="cv logo" class="logo" loading="eager" rel="preload"
                                      src="/assets/CVHS-logo.png"/></a>
                 </Boop>
-                <div class="top-text">CVHS Community Service {response.user.role}</div>
+                <div class="top-text">CVHS Community Service</div>
             </div>
 
             <div class="navigation-links">
