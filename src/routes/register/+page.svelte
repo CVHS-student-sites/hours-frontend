@@ -70,11 +70,31 @@
         height: 70px;
         cursor: pointer;
         user-select: none;
-        pointer-events: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -o-user-select: none;
+    }
+
+    a {
+        display: inherit;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+    }
+
+    a:link {
+        text-decoration: none;
+        user-select: none;
+    }
+
+    a:visited {
+        text-decoration: none;
+        user-select: none;
+    }
+
+    a:hover {
+        text-decoration: none;
+        user-select: none;
+    }
+
+    a:active {
+        text-decoration: none;
         user-select: none;
     }
 
@@ -121,14 +141,6 @@
     label {
         color: var(--text);
         line-height: 20px;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    .forgot {
-        color: #4ca6ff;
     }
 
     input[type="text"],
@@ -204,7 +216,6 @@
     @media only screen and (max-width: 600px) {
         .logo {
             height: 35px;
-            /*left: 20px;*/
         }
 
         .login {
@@ -222,7 +233,7 @@
             width: 90vw;
         }
 
-        .top-text{
+        .top-text {
             font-size: 15px;
         }
 
@@ -235,7 +246,7 @@
 
 <div class="main">
     <div class="top">
-        <a href="/"><img alt="IMS logo" class="logo" src="/assets/CVHS-logo.png"/></a>
+        <a href="/"><img alt="CVHS logo" class="logo" src="/assets/CVHS-logo.png"/></a>
         <div class="top-text">CVHS Community Service</div>
     </div>
 
