@@ -49,8 +49,9 @@
         background-color: var(--background);
         display: flex;
         flex-direction: column;
-        height: 100vh;
+        height: 100%;
         width: 100vw;
+        position: absolute;
     }
 
     .top {
@@ -194,11 +195,6 @@
     }
 
     @media only screen and (max-width: 600px) {
-        .main {
-            /* background: rgb(2, 0, 36); */
-            /* background: linear-gradient(14deg, rgb(9, 3, 121) 0%, rgb(33, 97, 239) 100%); */
-        }
-
         .logo {
             height: 35px;
             /*left: 20px;*/
@@ -232,9 +228,7 @@
 
 <div class="main">
     <div class="top">
-        <a href="/"
-        ><img alt="IMS logo" class="logo" src="/assets/CVHS-logo.png"/></a
-        >
+        <a href="/"><img alt="IMS logo" class="logo" src="/assets/CVHS-logo.png"/></a>
         <div class="top-text">CVHS Community Service</div>
     </div>
 

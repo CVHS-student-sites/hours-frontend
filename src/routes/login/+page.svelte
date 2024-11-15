@@ -23,8 +23,9 @@
         background-color: var(--background);
         display: flex;
         flex-direction: column;
-        height: 100vh;
+        height: 100%;
         width: 100vw;
+        position: absolute;
     }
 
     .top {
@@ -98,13 +99,27 @@
         transform-origin: center;
     }
 
+    @media only screen and (max-width: 600px) {
+        .logo {
+            height: 35px;
+            /*left: 20px;*/
+        }
+
+        .login {
+            row-gap: 30px;
+        }
+
+        .top-text{
+            font-size: 15px;
+        }
+
+    }
+
 </style>
 
 <div class="main">
     <div class="top">
-        <a href="/"
-        ><img alt="IMS logo" class="logo" src="/assets/CVHS-logo.png"/></a
-        >
+        <a href="/"><img alt="IMS logo" class="logo" src="/assets/CVHS-logo.png"/></a>
         <div class="top-text">CVHS Community Service</div>
     </div>
 
@@ -113,7 +128,7 @@
 
         {#if !selectedView}
             <div class="login-selection-cont">
-                <div class="button-text">Please select login</div>
+<!--                <div class="button-text">Please select login</div>-->
                 <div class="login-button-cont">
                     <button class="login-select" on:click={() => loginPage(0)}>Student Login</button>
                     <button class="login-select" on:click={() => loginPage(1)}>Admin Login</button>
