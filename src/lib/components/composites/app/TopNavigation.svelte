@@ -2,10 +2,8 @@
     import Boop from "$lib/components/app/Boop.svelte";
     import ProfileIcon from "$lib/components/global/base/ProfileIcon.svelte";
 
-    import {blur} from 'svelte/transition';
-
     export let data;
-    const { response } = data;
+    const {response} = data;
 </script>
 
 <style>
@@ -179,24 +177,24 @@
         <div class="top-navigation">
             <div class="logo-cont">
                 <Boop rotation={10} timing={200}>
-                    <a href="/"><img alt="cv logo" class="logo" loading="eager" rel="preload"
-                                     src="/assets/CVHS-logo.png"/></a>
+                    <a href="/static"><img alt="cv logo" class="logo" loading="eager" rel="preload"
+                                           src="/assets/CVHS-logo.png"/></a>
                 </Boop>
                 <div class="top-text">CVHS Community Service</div>
             </div>
 
             <div class="navigation-links">
-                <a href="/" class="nav-link">Home</a>
+                <a class="nav-link" href="/static">Home</a>
 
-                <a href="/orgs" class="nav-link">Info</a>
+                <a class="nav-link" href="/orgs">Info</a>
 
-                <a href="/help" class="nav-link">Help</a>
+                <a class="nav-link" href="/help">Help</a>
 
-                <a href="/register" class="nav-link">Register</a>
+                <a class="nav-link" href="/register">Register</a>
 
                 {#if response.signedIn}
                     <div class="profile-icon-cont">
-                        <a href="/dashboard" class="profile-link" in:blur={{delay: 150, duration: 300}}>
+                        <a href="/dashboard" class="profile-link">
                             <ProfileIcon firstName={response.user.firstName} lastName={response.user.lastName}
                                          iconSize="48" fontSize="16"/>
                         </a>

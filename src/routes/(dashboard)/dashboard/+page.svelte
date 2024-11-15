@@ -3,36 +3,28 @@
     import SupervisorDashboard from "./views/SupervisorDashboard.svelte";
 
     import {BarLoader} from "svelte-loading-spinners";
-    import {checkLoginStatus} from "$lib/api/global.js";
     import {onMount} from "svelte";
-    import {goto} from "$app/navigation";
     import {blur} from 'svelte/transition';
     import {loadStudentData} from "$lib/api/utils/state.js";
 
     let currentView;
     let loading = true;
-    let role;
+
+    export let data;
+
 
     onMount(async () => {
         loading = true;
 
-        let loginCheckResponse = await checkLoginStatus();
-        if (!loginCheckResponse.data.signedIn) {
-            await goto('/login');
-        } else {
-            role = loginCheckResponse.data.user.role;
-            console.log(role);
+        console.log(data.response.user.role)
 
-            //todo depending on the role, lets preload data into a store in this block
-            if (role === "student"){
-                currentView = StudentDashboard;
-                await loadStudentData();
-            }
-            if (role === "supervisor") currentView = SupervisorDashboard;
-            if (role === "admin") await goto('/admin');
-
-            loading = false;
+        if (data.response.user.role === "student") {
+            currentView = StudentDashboard;
+            await loadStudentData();
         }
+        if (data.response.user.role === "supervisor") currentView = SupervisorDashboard;
+
+        loading = false;
     });
 </script>
 

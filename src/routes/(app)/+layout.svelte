@@ -1,6 +1,6 @@
 <script>
-    import TopNavigation from "$lib/components/composites/TopNavigation.svelte";
-    import BottomNavigation from "$lib/components/composites/BottomNavigation.svelte";
+    import TopNavigation from "$lib/components/composites/app/TopNavigation.svelte";
+    import BottomNavigation from "$lib/components/composites/app/BottomNavigation.svelte";
 
     export let data;
 </script>

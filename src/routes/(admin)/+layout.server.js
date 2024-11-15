@@ -4,6 +4,10 @@ export async function load({cookies, url}) {
     if (import.meta.env.PROD) {
         const auth = cookies.get('token');
 
+        if (!auth) {
+            redirect(302, '/login');
+        }
+
         let response;
         try {
             response = await fetch(`${url.origin}/api/auth/check-auth`, {
@@ -12,7 +16,6 @@ export async function load({cookies, url}) {
                     'Authorization': `Bearer ${auth}`,
                 },
             });
-
         } catch (error) {
             console.error("Error checking authentication:", error);
             redirect(302, '/');

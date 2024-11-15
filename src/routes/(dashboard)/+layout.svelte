@@ -1,4 +1,9 @@
 <script>
+    import StudentBottomNavigation from "$lib/components/composites/dashboard/student/StudentBottomNavigation.svelte";
+    import SupervisorBottomNavigation
+        from "$lib/components/composites/dashboard/supervisor/SupervisorBottomNavigation.svelte";
+
+    export let data;
 </script>
 
 <style>
@@ -17,5 +22,10 @@
 
 <div class="layout-main">
     <slot/>
-    <!--    <Botnav/>-->
+
+    {#if data.response.user.role === "student"}
+        <StudentBottomNavigation data={data}/>
+    {:else if data.response.user.role === "supervisor"}
+        <SupervisorBottomNavigation data={data}/>
+    {/if}
 </div>

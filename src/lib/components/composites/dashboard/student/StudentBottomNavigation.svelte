@@ -1,22 +1,10 @@
 <script>
-    import {blur, fade} from 'svelte/transition';
-    import ProfileIcon from "$lib/components/global/base/ProfileIcon.svelte";
 
     export let data;
     const {response} = data;
 </script>
 
 <style>
-
-    :global(.botnav-active) {
-        /* Style for the active icon with the box */
-        background-color: #003566;
-        border-radius: 20px;
-        width: 40px;
-        height: 40px;
-        /*transition: background-color 0.5s ease;*/
-    }
-
     .icond a {
         display: inherit;
         -webkit-tap-highlight-color: transparent;
@@ -132,60 +120,40 @@
 
 <div class="botnav-main">
     <div class="icon-cont">
-        <a href="/">
+        <a href="/static">
             <div class="icon-group">
                 <div class="material-symbols-rounded icond">
-                    home
+                    person
                 </div>
-                <div class="stack-text">Home</div>
+                <div class="stack-text">Profile</div>
             </div>
         </a>
         <a href="/help">
             <div class="icon-group">
                 <div class="material-symbols-rounded icond">
-                    help
+                    schedule
                 </div>
-                <div class="stack-text">Help</div>
+                <div class="stack-text">Hours</div>
             </div>
         </a>
-        {#if response.signedIn}
-            <a href="/scan">
-                <div class="icon-group">
-                    <div class="material-symbols-rounded icond">
-                        qr_code_scanner
-                    </div>
-                    <div class="stack-text">Scan</div>
-                </div>
-            </a>
-        {:else}
-            <a href="/register">
-                <div class="icon-group">
-                    <div class="material-symbols-rounded icond">
-                        person_add
-                    </div>
-                    <div class="stack-text">Register</div>
-                </div>
-            </a>
-        {/if}
 
-        {#if response.signedIn}
-            <a href="/dashboard" in:blur={{delay: 150, duration: 300}}>
-                <div class="icon-group">
-                    <ProfileIcon firstName={response.user.firstName} lastName={response.user.lastName}
-                                 iconSize="24" fontSize="8"/>
-                    <div class="stack-text">You</div>
+        <a href="/scan">
+            <div class="icon-group">
+                <div class="material-symbols-rounded icond">
+                    qr_code_scanner
                 </div>
-            </a>
-        {:else}
-            <a href="/login">
-                <div class="icon-group">
-                    <div class="material-symbols-rounded icond" in:fade={{ duration: 300 }}>
-                        login
-                    </div>
-                    <div class="stack-text">Login</div>
+                <div class="stack-text">Scan</div>
+            </div>
+        </a>
+
+        <a href="/dashboard">
+            <div class="icon-group">
+                <div class="material-symbols-rounded icond">
+                    trending_up
                 </div>
-            </a>
-        {/if}
+                <div class="stack-text">Stats</div>
+            </div>
+        </a>
 
     </div>
 </div>
