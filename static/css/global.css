@@ -7,6 +7,10 @@
     --muted: hsl(240 3.7% 15.9%);
     --light-text: hsl(240, 5.1%, 45.9%);
 }
+
+body{
+    background-color: var(--background);
+}
 /*Values should be these*/
 /*--text: #ecebee;*/
 /*--background: #060508;*/
