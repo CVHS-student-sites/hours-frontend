@@ -2,23 +2,17 @@
     import Boop from "$lib/components/app/Boop.svelte";
     import ProfileIcon from "$lib/components/global/base/ProfileIcon.svelte";
 
-    import {checkLoginStatus} from "$lib/api/global.js";
-    import {onMount} from "svelte";
     import {blur} from 'svelte/transition';
 
-    let isSignedIn = false;
-    let response;
-
-    //todo this should be forced server side logic
-    onMount(async () => {
-        response = await checkLoginStatus();
-        isSignedIn = response.data.signedIn;
-    });
+    export let data;
+    const { response } = data;
 </script>
 
 <style>
     .logo-cont a {
         display: inherit;
+        width: 50px;
+        height: 50px;
     }
 
     a:link {
@@ -188,7 +182,7 @@
                     <a href="/"><img alt="cv logo" class="logo" loading="eager" rel="preload"
                                      src="/assets/CVHS-logo.png"/></a>
                 </Boop>
-                <div class="top-text">CVHS Community Service</div>
+                <div class="top-text">CVHS Community Service {response.user.role}</div>
             </div>
 
             <div class="navigation-links">
@@ -200,10 +194,10 @@
 
                 <a href="/register" class="nav-link">Register</a>
 
-                {#if isSignedIn}
+                {#if response.signedIn}
                     <div class="profile-icon-cont">
                         <a href="/dashboard" class="profile-link" in:blur={{delay: 150, duration: 300}}>
-                            <ProfileIcon firstName={response.data.user.firstName} lastName={response.data.user.lastName}
+                            <ProfileIcon firstName={response.user.firstName} lastName={response.user.lastName}
                                          iconSize="48" fontSize="16"/>
                         </a>
                     </div>

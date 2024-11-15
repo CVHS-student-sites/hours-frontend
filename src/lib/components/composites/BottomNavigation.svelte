@@ -2,19 +2,8 @@
     import {blur, fade} from 'svelte/transition';
     import ProfileIcon from "$lib/components/global/base/ProfileIcon.svelte";
 
-    import {checkLoginStatus} from "$lib/api/global.js";
-    import {onMount} from 'svelte';
-
-    let isSignedIn = false;
-    let response;
-
-    //todo this should be forced server side logic
-    onMount(async () => {
-        response = await checkLoginStatus();
-        isSignedIn = response.data.signedIn;
-    });
-
-
+    export let data;
+    const {response} = data;
 </script>
 
 <style>
@@ -159,7 +148,7 @@
                 <div class="stack-text">Help</div>
             </div>
         </a>
-        {#if isSignedIn}
+        {#if response.signedIn}
             <a href="/scan">
                 <div class="icon-group">
                     <div class="material-symbols-rounded icond">
@@ -179,10 +168,13 @@
             </a>
         {/if}
 
-        {#if isSignedIn}
+        {#if response.signedIn}
             <a href="/dashboard" in:blur={{delay: 150, duration: 300}}>
-                <ProfileIcon firstName={response.data.user.firstName} lastName={response.data.user.lastName}
-                             iconSize="48" fontSize="16"/>
+                <div class="icon-group">
+                    <ProfileIcon firstName={response.user.firstName} lastName={response.user.lastName}
+                                 iconSize="24" fontSize="8"/>
+                    <div class="stack-text">You</div>
+                </div>
             </a>
         {:else}
             <a href="/login">
@@ -197,6 +189,3 @@
 
     </div>
 </div>
-
-
-

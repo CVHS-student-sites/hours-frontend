@@ -1,7 +1,8 @@
 <script>
     import TopNavigation from "$lib/components/composites/TopNavigation.svelte";
     import BottomNavigation from "$lib/components/composites/BottomNavigation.svelte";
-    // import Botnav from "$lib/components/Botnav.svelte";
+
+    export let data;
 </script>
 
 <style>
@@ -19,7 +20,7 @@
 </style>
 
 <div class="layout-main">
-    <TopNavigation/>
+    <TopNavigation data={data}/>
     <slot/>
-    <BottomNavigation/>
+    <BottomNavigation data={data}/>
 </div>

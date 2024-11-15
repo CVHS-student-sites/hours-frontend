@@ -2,8 +2,6 @@
     import {blur, slide} from 'svelte/transition';
     import {onMount} from 'svelte';
 
-    import HomeTilt from "$lib/components/app/Tilt/HomeTilt.svelte";
-
     let visible = false;
     onMount(() => {
         visible = true;
@@ -152,7 +150,7 @@
             font-size: 12px;
         }
 
-        .animation-cont{
+        .animation-cont {
             height: 48px;
         }
 
@@ -164,7 +162,7 @@
 
 
     @media screen and (max-width: 1115px) {
-        .tilt{
+        .tilt {
             display: none;
         }
     }
@@ -212,9 +210,6 @@
 
             </div>
 
-<!--            <div class="sub1 tilt" in:blur={{ delay: 250, duration: 300 }}>-->
-<!--                <HomeTilt/>-->
-<!--            </div>-->
         {/if}
     </div>
 </div>
