@@ -44,6 +44,7 @@
         height: 70px;
         cursor: pointer;
         user-select: none;
+        pointer-events: none;
     }
 
     .top-text {
