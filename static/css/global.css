@@ -8,12 +8,13 @@
     --light-text: hsl(240, 5.1%, 45.9%);
 }
 
-body{
-    background-color: var(--background);
-}
 /*Values should be these*/
 /*--text: #ecebee;*/
 /*--background: #060508;*/
 /*--primary: #0084ff;*/
 /*--secondary: #1b2c42;*/
 /*--accent: #743fde;*/
+
+body {
+    background-color: var(--background);
+}
