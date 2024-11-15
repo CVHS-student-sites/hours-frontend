@@ -71,6 +71,11 @@
         cursor: pointer;
         user-select: none;
         pointer-events: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
     }
 
     .top-text {
