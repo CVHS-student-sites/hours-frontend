@@ -2,7 +2,7 @@
     import Students from "./views/Students.svelte";
     import Privileged from "./views/Privileged.svelte";
 
-    let selectedView;
+    let selectedView = $state();
 
     function loginPage(page) {
         if (page === 0) {
@@ -11,6 +11,8 @@
             selectedView = Privileged;
         }
     }
+
+    const SvelteComponent = $derived(selectedView);
 </script>
 
 <svelte:head>
@@ -142,14 +144,14 @@
     </div>
 
     <div class="login">
-        <svelte:component this={selectedView}/>
+        <SvelteComponent/>
 
         {#if !selectedView}
             <div class="login-selection-cont">
                 <!--                <div class="button-text">Please select login</div>-->
                 <div class="login-button-cont">
-                    <button class="login-select" on:click={() => loginPage(0)}>Student Login</button>
-                    <button class="login-select" on:click={() => loginPage(1)}>Admin Login</button>
+                    <button class="login-select" onclick={() => loginPage(0)}>Student Login</button>
+                    <button class="login-select" onclick={() => loginPage(1)}>Admin Login</button>
                 </div>
             </div>
         {/if}

@@ -2,7 +2,7 @@
     import {blur, slide} from 'svelte/transition';
     import {onMount} from 'svelte';
 
-    let visible = false;
+    let visible = $state(false);
     onMount(() => {
         visible = true;
     });

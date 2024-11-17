@@ -7,10 +7,11 @@
     import {blur} from 'svelte/transition';
     import {loadStudentData} from "$lib/api/utils/state.js";
 
-    let currentView;
-    let loading = true;
+    let currentView = $state();
+    let loading = $state(true);
 
-    export let data;
+    /** @type {{data: any}} */
+    let { data } = $props();
 
 
     onMount(async () => {
@@ -52,5 +53,6 @@
         <div class="loading-text">Loading your dashboard</div>
     </div>
 {:else}
-    <svelte:component this={currentView}/>
+    {@const SvelteComponent = currentView}
+    <SvelteComponent/>
 {/if}

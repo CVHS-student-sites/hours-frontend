@@ -1,25 +1,31 @@
 <script>
+    import { run } from 'svelte/legacy';
+
     import { spring } from 'svelte/motion';
 
-    let isBooped = false;
-    export let rotation = 0;
-    export let timing = 150;
+    let isBooped = $state(false);
+    /** @type {{rotation?: number, timing?: number, children?: import('svelte').Snippet}} */
+    let { rotation = 0, timing = 150, children } = $props();
 
     let springyRotation = spring(0, {
         stiffness: 0.1,
         damping: 0.15
     });
 
-    $: springyRotation.set(isBooped ? rotation : 0);
+    run(() => {
+        springyRotation.set(isBooped ? rotation : 0);
+    });
 
-    $: style = `
+    let style = $derived(`
 		display: inline-block;
 		transform: rotate(${$springyRotation}deg)
-	`;
+	`);
 
-    $: if (isBooped) {
-        window.setTimeout(() => {isBooped = false}, timing);
-    }
+    run(() => {
+        if (isBooped) {
+            window.setTimeout(() => {isBooped = false}, timing);
+        }
+    });
 
     function triggerBoop() {
         isBooped = true;
@@ -27,6 +33,6 @@
 </script>
 
 <!-- trigger onclick so demo works on mobile -->
-<span on:mouseenter={triggerBoop} on:click={triggerBoop} style={style}>
-	<slot/>
+<span onmouseenter={triggerBoop} onclick={triggerBoop} style={style}>
+	{@render children?.()}
 </span>

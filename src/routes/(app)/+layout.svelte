@@ -2,7 +2,8 @@
     import TopNavigation from "$lib/components/composites/app/TopNavigation.svelte";
     import BottomNavigation from "$lib/components/composites/app/BottomNavigation.svelte";
 
-    export let data;
+    /** @type {{data: any, children?: import('svelte').Snippet}} */
+    let { data, children } = $props();
 </script>
 
 <style>
@@ -21,6 +22,6 @@
 
 <div class="layout-main">
     <TopNavigation data={data}/>
-    <slot/>
+    {@render children?.()}
     <BottomNavigation data={data}/>
 </div>

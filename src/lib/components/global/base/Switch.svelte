@@ -1,5 +1,6 @@
 <script>
-    export let checked = false;
+    /** @type {{checked?: boolean}} */
+    let { checked = $bindable(false) } = $props();
 
     function toggleSwitch() {
         checked = !checked;
@@ -48,6 +49,6 @@
 
 <button
         class={`switch-root ${checked ? 'checked' : 'unchecked'}`}
-        on:click={toggleSwitch}>
+        onclick={toggleSwitch}>
     <span class={`switch-thumb ${checked ? 'checked' : 'unchecked'}`}></span>
 </button>

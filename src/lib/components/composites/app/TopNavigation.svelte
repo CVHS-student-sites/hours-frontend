@@ -2,7 +2,8 @@
     import Boop from "$lib/components/app/Boop.svelte";
     import ProfileIcon from "$lib/components/global/base/ProfileIcon.svelte";
 
-    export let data;
+    /** @type {{data: any}} */
+    let { data } = $props();
     const {response} = data;
 </script>
 

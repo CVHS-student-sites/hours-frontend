@@ -1,8 +1,11 @@
 <script>
-    export let firstName = "";
-    export let lastName = "";
-    export let iconSize = 48;
-    export let fontSize = 16;
+    /** @type {{firstName?: string, lastName?: string, iconSize?: number, fontSize?: number}} */
+    let {
+        firstName = "",
+        lastName = "",
+        iconSize = 48,
+        fontSize = 16
+    } = $props();
 
     let initials = `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
 

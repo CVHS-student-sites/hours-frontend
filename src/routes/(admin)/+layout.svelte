@@ -1,6 +1,8 @@
 <script>
     import SidenavAdmin from "$lib/components/composites/admin/SidenavAdmin.svelte";
     import TopAdminNavigation from "$lib/components/composites/admin/TopAdminNavigation.svelte";
+    /** @type {{children?: import('svelte').Snippet}} */
+    let { children } = $props();
 </script>
 
 <style>
@@ -35,6 +37,6 @@
     <TopAdminNavigation/>
     <div class="center">
         <SidenavAdmin/>
-        <slot/>
+        {@render children?.()}
     </div>
 </div>

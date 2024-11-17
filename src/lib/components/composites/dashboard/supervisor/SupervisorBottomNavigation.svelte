@@ -1,6 +1,7 @@
 <script>
 
-    export let data;
+    /** @type {{data: any}} */
+    let { data } = $props();
     const {response} = data;
 </script>
 

@@ -3,7 +3,8 @@
     import SupervisorBottomNavigation
         from "$lib/components/composites/dashboard/supervisor/SupervisorBottomNavigation.svelte";
 
-    export let data;
+    /** @type {{data: any, children?: import('svelte').Snippet}} */
+    let { data, children } = $props();
 </script>
 
 <style>
@@ -21,7 +22,7 @@
 </style>
 
 <div class="layout-main">
-    <slot/>
+    {@render children?.()}
 
     {#if data.response.user.role === "student"}
         <StudentBottomNavigation data={data}/>

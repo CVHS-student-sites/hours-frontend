@@ -1,19 +1,22 @@
 <script>
+    import { run } from 'svelte/legacy';
+
     import {fade, scale} from 'svelte/transition';
     import {quintOut} from 'svelte/easing';
 
-    let dialog;
-    export let showDialog = false;
-    export let heading = "";
-    export let message = "";
+    let dialog = $state();
+    /** @type {{showDialog?: boolean, heading?: string, message?: string}} */
+    let { showDialog = $bindable(false), heading = "", message = "" } = $props();
 
     function openDialog() {
         dialog.showModal();
     }
 
-    $: if (dialog && showDialog) {
-        openDialog();
-    }
+    run(() => {
+        if (dialog && showDialog) {
+            openDialog();
+        }
+    });
 
     function closeDialog() {
         dialog.close();
@@ -92,7 +95,7 @@
 {#if showDialog}
     <div class="overlay" in:fade={{ duration: 160 }}></div>
 
-    <dialog bind:this={dialog} on:close={() => (showDialog = false)}
+    <dialog bind:this={dialog} onclose={() => (showDialog = false)}
             in:scale={{ duration: 160,  opacity: 0.5, start: 0.9, easing: quintOut }}>
 
         <div class="text-cont">
@@ -100,8 +103,8 @@
             <p>{message}</p>
         </div>
         <div class="button-cont">
-            <button class="button-main" on:click={closeDialog}>Cancel</button>
-            <button class="button-main highlight" on:click={closeDialog}>Continue</button>
+            <button class="button-main" onclick={closeDialog}>Cancel</button>
+            <button class="button-main highlight" onclick={closeDialog}>Continue</button>
         </div>
     </dialog>
 {/if}

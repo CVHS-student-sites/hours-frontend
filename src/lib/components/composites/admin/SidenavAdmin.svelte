@@ -1,16 +1,26 @@
 <script>
+    import { run } from 'svelte/legacy';
+
     import {page} from '$app/stores';
 
     console.log($page.url.pathname);
 
-    let selectPage;
-    $: if ($page.url.pathname === '/admin') selectPage = 0;
+    let selectPage = $state();
+    run(() => {
+        if ($page.url.pathname === '/admin') selectPage = 0;
+    });
 
 
-    $: if ($page.url.pathname === '/admin/table') selectPage = 1;
-    $: if ($page.url.pathname === '/admin/manage') selectPage = 2;
+    run(() => {
+        if ($page.url.pathname === '/admin/table') selectPage = 1;
+    });
+    run(() => {
+        if ($page.url.pathname === '/admin/manage') selectPage = 2;
+    });
     // $: if ($page.url.pathname === '/admin/settings') selectPage = 3;
-    $: if ($page.url.pathname === '/admin/debug') selectPage = 4;
+    run(() => {
+        if ($page.url.pathname === '/admin/debug') selectPage = 4;
+    });
 
 </script>
 

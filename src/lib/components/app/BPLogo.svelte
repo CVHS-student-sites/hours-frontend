@@ -3,7 +3,7 @@
     import {quintOut} from 'svelte/easing';
     import {onMount} from 'svelte';
 
-    let condition = false;
+    let condition = $state(false);
 
     onMount(() => {
         condition = true;

@@ -2,9 +2,9 @@
     import {loginPrivileged} from "$lib/api/global.js";
     import {goto} from "$app/navigation";
 
-    let username = "";
-    let password = "";
-    let remember = false;
+    let username = $state("");
+    let password = $state("");
+    let remember = $state(false);
 
 
     function handleKeyPress(event) {
@@ -197,7 +197,7 @@
 <div class="login-cont">
     <div class="login-header">Admin/Supervisor Login</div>
 
-    <div class="login-form" on:keydown={handleKeyPress}>
+    <div class="login-form" onkeydown={handleKeyPress}>
         <label for="username">Email or Username</label>
         <input
                 bind:value={username}
@@ -221,7 +221,7 @@
             <div class="tos-text">Remeber Me</div>
         </div>
 
-        <button class="submit" on:click={login}>Sign in</button>
+        <button class="submit" onclick={login}>Sign in</button>
     </div>
 </div>
 

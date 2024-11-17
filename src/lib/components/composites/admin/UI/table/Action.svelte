@@ -1,5 +1,6 @@
 <script>
-    export let id;
+    /** @type {{id: any}} */
+    let { id } = $props();
 
     function click() {
         alert(id);
@@ -37,6 +38,6 @@
     }
 </style>
 
-<div class="action-btn transition-colors" on:click={click}>
+<div class="action-btn transition-colors" onclick={click}>
     <div class="material-symbols-outlined">more_vert</div>
 </div>

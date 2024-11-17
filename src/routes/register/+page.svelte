@@ -1,8 +1,8 @@
 <script>
     import {goto} from "$app/navigation";
 
-    let username = "";
-    let password = "";
+    let username = $state("");
+    let password = $state("");
 
     let loading = false;
 
@@ -254,7 +254,7 @@
         <div class="login-cont">
             <div class="login-header">Student Registration</div>
 
-            <div class="login-form" on:keydown={handleKeyPress}>
+            <div class="login-form" onkeydown={handleKeyPress}>
 
                 <label for="username">First Name</label>
                 <input
@@ -310,7 +310,7 @@
                         type="password"
                 />
 
-                <button class="submit" on:click={login}>Sign in</button>
+                <button class="submit" onclick={login}>Sign in</button>
             </div>
         </div>
 

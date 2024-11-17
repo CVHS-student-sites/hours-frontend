@@ -4,7 +4,7 @@
     import { onMount } from "svelte";
 
     let socket;
-    let canvasElement;
+    let canvasElement = $state();
 
     onMount(() => {
         socket = io("http://localhost:3000");

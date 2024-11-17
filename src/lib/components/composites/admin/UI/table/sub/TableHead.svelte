@@ -1,6 +1,7 @@
 <script>
 
-    export let props = {
+    /** @type {{props?: any, cellId: any, children?: import('svelte').Snippet}} */
+    let { props = {
         select: null,
         sort: {
             order: undefined,
@@ -9,10 +10,9 @@
             disabled: false,
         },
         filter: null,
-    };
-    export let cellId;
+    }, cellId, children } = $props();
 
-    let isDropdownOpen = false;
+    let isDropdownOpen = $state(false);
 
     function handleAscSort(e) {
         if (props.sort.order === "asc") return;
@@ -57,11 +57,11 @@
     <div class="dropdown-container" data-open={isDropdownOpen}>
         <button
                 class="dropdown-button"
-                on:click={() => (isDropdownOpen = !isDropdownOpen)}
+                onclick={() => (isDropdownOpen = !isDropdownOpen)}
                 aria-haspopup="true"
                 aria-expanded={isDropdownOpen}
         >
-            <slot />
+            {@render children?.()}
             {#if props.sort.order === "desc"}
                 <span class="icon">⬇️</span>
             {:else if props.sort.order === "asc"}
@@ -72,5 +72,5 @@
         </button>
     </div>
 {:else}
-    <slot />
+    {@render children?.()}
 {/if}

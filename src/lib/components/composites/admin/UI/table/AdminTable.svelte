@@ -1,4 +1,6 @@
 <script>
+    import { run } from 'svelte/legacy';
+
     import {readable} from 'svelte/store';
     import {createRender, createTable, Render, Subscribe} from 'svelte-headless-table';
     import {addPagination, addSelectedRows, addSortBy, addTableFilter} from 'svelte-headless-table/plugins';
@@ -11,13 +13,13 @@
 
 
     let filterHour;
-    $:{
+    run(() => {
         if (filterHour) {
             $filterValue = "pending"
         } else {
             $filterValue = "";
         }
-    }
+    });
     let rawData = [{"id":"968348","email":"ddenley0@acquirethisname.com","firstName":"Dyanne","lastName":"Denley","totalHours":18},
         {"id":"259804","email":"mhoy1@mlb.com","firstName":"Marylinda","lastName":"Hoy","totalHours":189},
         {"id":"719689","email":"rvasiljevic2@plala.or.jp","firstName":"Rhiamon","lastName":"Vasiljevic","totalHours":41},
@@ -428,44 +430,52 @@
         <table {...$tableAttrs}>
             <thead class="table-head">
             {#each $headerRows as headerRow (headerRow.id)}
-                <Subscribe rowAttrs={headerRow.attrs()} let:rowAttrs>
-                    <tr {...rowAttrs} class="table-ro">
-                        {#each headerRow.cells as cell (cell.id)}
-                            <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
-                                <th {...attrs} on:click={props.sort.toggle} class="table-header">
-                                    {#if cell.id !== "select" && cell.id !== "actions"}
-                                        <TableHead
-                                                {props}
-                                                {tableModel}
-                                                cellId={cell.id}
-                                        >
-                                            <Render of={cell.render()} /></TableHead
-                                        >
-                                    {:else}
-                                        <Render of={cell.render()} />
-                                    {/if}
-                                </th>
+                <Subscribe rowAttrs={headerRow.attrs()} >
+                    {#snippet children({ rowAttrs })}
+                                                <tr {...rowAttrs} class="table-ro">
+                            {#each headerRow.cells as cell (cell.id)}
+                                <Subscribe attrs={cell.attrs()}  props={cell.props()} >
+                                    {#snippet children({ attrs, props })}
+                                                                        <th {...attrs} onclick={props.sort.toggle} class="table-header">
+                                            {#if cell.id !== "select" && cell.id !== "actions"}
+                                                <TableHead
+                                                        {props}
+                                                        {tableModel}
+                                                        cellId={cell.id}
+                                                >
+                                                    <Render of={cell.render()} /></TableHead
+                                                >
+                                            {:else}
+                                                <Render of={cell.render()} />
+                                            {/if}
+                                        </th>
 
 
-                            </Subscribe>
-                        {/each}
-                    </tr>
-                </Subscribe>
+                                                                                                        {/snippet}
+                                                                </Subscribe>
+                            {/each}
+                        </tr>
+                                                                {/snippet}
+                                        </Subscribe>
             {/each}
             </thead>
             <tbody {...$tableBodyAttrs}>
             {#each $pageRows as row (row.id)}
-                <Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-                    <tr {...rowAttrs} class:matches={$selectedDataIds[row.id] && "selected"} class="table-ro">
-                        {#each row.cells as cell (cell.id)}
-                            <Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
-                                <td {...attrs} class:matches={props.tableFilter.matches} class="table-row">
-                                    <Render of={cell.render()}/>
-                                </td>
-                            </Subscribe>
-                        {/each}
-                    </tr>
-                </Subscribe>
+                <Subscribe rowAttrs={row.attrs()} >
+                    {#snippet children({ rowAttrs })}
+                                                <tr {...rowAttrs} class:matches={$selectedDataIds[row.id] && "selected"} class="table-ro">
+                            {#each row.cells as cell (cell.id)}
+                                <Subscribe attrs={cell.attrs()}  props={cell.props()} >
+                                    {#snippet children({ attrs, props })}
+                                                                        <td {...attrs} class:matches={props.tableFilter.matches} class="table-row">
+                                            <Render of={cell.render()}/>
+                                        </td>
+                                                                                                        {/snippet}
+                                                                </Subscribe>
+                            {/each}
+                        </tr>
+                                                                {/snippet}
+                                        </Subscribe>
             {/each}
             </tbody>
         </table>
@@ -473,13 +483,13 @@
     <div>
         <button
                 disabled={!$hasPreviousPage}
-                on:click={() => $pageIndex--}>Previous page
+                onclick={() => $pageIndex--}>Previous page
         </button
         >
         {$pageIndex + 1} out of {$pageCount}
         <button
                 disabled={!$hasNextPage}
-                on:click={() => $pageIndex++}>Next page
+                onclick={() => $pageIndex++}>Next page
         </button
         >
     </div>
