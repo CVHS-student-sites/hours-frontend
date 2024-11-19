@@ -16,8 +16,6 @@
     onMount(async () => {
         loading = true;
 
-        console.log(data.response.user.role)
-
         if (data.response.user.role === "student") {
             currentView = StudentDashboard;
             await loadStudentData();
