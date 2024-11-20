@@ -161,7 +161,7 @@
             <a href="/dashboard">
                 <div class="icon-group">
                     <ProfileIcon firstName={response.user.firstName} lastName={response.user.lastName}
-                                 iconSize="24" fontSize="8"/>
+                                 iconSize="24px" fontSize="8px"/>
                     <div class="stack-text">You</div>
                 </div>
             </a>

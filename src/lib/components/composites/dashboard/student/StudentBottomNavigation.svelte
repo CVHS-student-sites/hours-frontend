@@ -120,15 +120,15 @@
 
 <div class="botnav-main">
     <div class="icon-cont">
-        <a href="/static">
+        <a href="/dashboard">
             <div class="icon-group">
                 <div class="material-symbols-rounded icond">
-                    person
+                    dashboard
                 </div>
-                <div class="stack-text">Profile</div>
+                <div class="stack-text">Dash</div>
             </div>
         </a>
-        <a href="/help">
+        <a href="/dashboard/hours">
             <div class="icon-group">
                 <div class="material-symbols-rounded icond">
                     schedule
@@ -137,7 +137,7 @@
             </div>
         </a>
 
-        <a href="/scan">
+        <a href="/dashboard/scan">
             <div class="icon-group">
                 <div class="material-symbols-rounded icond">
                     qr_code_scanner
@@ -146,12 +146,12 @@
             </div>
         </a>
 
-        <a href="/dashboard">
+        <a href="/dashboard/profile">
             <div class="icon-group">
                 <div class="material-symbols-rounded icond">
-                    trending_up
+                    person
                 </div>
-                <div class="stack-text">Stats</div>
+                <div class="stack-text">Profile</div>
             </div>
         </a>
 

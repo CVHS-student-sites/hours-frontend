@@ -196,7 +196,7 @@
                     <div class="profile-icon-cont">
                         <a href="/dashboard" class="profile-link">
                             <ProfileIcon firstName={response.user.firstName} lastName={response.user.lastName}
-                                         iconSize="48" fontSize="16"/>
+                                         iconSize="48px" fontSize="16px"/>
                         </a>
                     </div>
                 {:else}

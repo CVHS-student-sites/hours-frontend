@@ -1,8 +1,8 @@
 <script>
     export let firstName = "";
     export let lastName = "";
-    export let iconSize = 48;
-    export let fontSize = 16;
+    export let iconSize = "48px";
+    export let fontSize = "16px";
 
     let initials = `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
 
@@ -66,6 +66,6 @@
 </style>
 
 <div class="user-icon"
-     style="background-color: {backgroundColor}; width: {iconSize}px; height: {iconSize}px; font-size: {fontSize}px;">
+     style="background-color: {backgroundColor}; width: {iconSize}; height: {iconSize}; font-size: {fontSize};">
     {initials}
 </div>
