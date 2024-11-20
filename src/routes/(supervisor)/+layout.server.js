@@ -32,8 +32,8 @@ export async function load({cookies, url}) {
         redirect(302, '/admin');
     }
 
-    if (data.user.role === 'supervisor') {
-        redirect(302, '/supervisor');
+    if (data.user.role === 'student') {
+        redirect(302, '/dashboard');
     }
 
     return {
